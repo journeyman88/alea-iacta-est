@@ -91,6 +91,7 @@
         <module>alea-iacta-sys-vampire5</module>
         <module>alea-iacta-sys-darkeye5</module>
         <module>alea-iacta-sys-brassage</module>
+        <module>alea-iacta-core</module>
     </modules>
     <dependencyManagement>
         <dependencies>

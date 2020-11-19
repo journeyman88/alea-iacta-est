@@ -13,13 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.unknowndomain.alea;
+package net.unknowndomain.alea.systems;
+
+import java.util.ServiceLoader;
+import net.unknowndomain.alea.command.Command;
 
 /**
  *
  * @author journeyman
  */
-public class NewClass
+public abstract class RpgSystemCommand extends Command
 {
+    
+    public static final ServiceLoader<RpgSystemCommand> LOADER = ServiceLoader.load(RpgSystemCommand.class);
+    
+    
+    @Override
+    protected String getCommandRegex()
+    {
+        return getCommandDesc().getShortcut() + "|" + getCommandDesc().getCommand();
+    }
+    
+    public abstract RpgSystemDescriptor getCommandDesc();
     
 }
