@@ -29,3 +29,8 @@ At the moment of writing the systems supported are the following:
 | Shadowrun 5th Edition  | `!alea sr5`  | `!alea shadowrun-5th`  |
 | The Dark Eye 5th Edition  | `!alea da5`  | `!alea the-dark-eye-5th`  |
 | Vampire the Masquerade 5th Edition  | `!alea vt5`  | `!alea vampire-5th`  |
+
+
+## Run-It-Yourself
+Aside from the official instance, you can run yourself an instance of the bot, simply by building the code and run it with the command line argument `--discordToken <YOUR_TOKEN_HERE>`.
+You can also exclude systems that you're not interested into, simply by removing the appropriate jar from classpath before running it.
