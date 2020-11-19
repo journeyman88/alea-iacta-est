@@ -25,3 +25,11 @@ nb-configuration.xml
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+/alea-iacta-bot/target/
+/alea-iacta-sys-projecthope2/target/
+/alea-iacta-sys-shadowrun5/target/
+/alea-iacta-sys-7thsea2/target/
+/alea-iacta-sys-darkeye5/target/
+/alea-iacta-sys-brassage/target/
+/alea-iacta-sys-vampire5/target/
+/alea-iacta-core/target/
