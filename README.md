@@ -7,7 +7,8 @@ https://discord.com/oauth2/authorize?client_id=777835776757989427&scope=bot&perm
 
 The bot supports system specific rolls and also has an expression solver to work on more generic rolls.
 ## Expression Engine
-The expression engine can solve compounded expression in algebrical sum, and can interpret, beside simple integer constants, the following notations:
+The expression engine is built to be used as a simple dice roller and can be invoked using the `!alea expr <expression>` command.
+It can solve compounded expression in algebrical sum form, and can interpret - beside simple integer constants - the following notations:
 
 - **Simple Dice notation** *NdX*, for example 2d8 - which means roll two dice each with eight faces.
 - **Roll'n'Keep notation** *NdXkY*, for example 10d6k5 - which means roll ten dice each with six faces, then sum together the 5 highest values
