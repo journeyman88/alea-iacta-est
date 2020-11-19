@@ -8,6 +8,12 @@
     </parent>
     <artifactId>alea-iacta-core</artifactId>
     <packaging>jar</packaging>
+    <name>Alea Iacta Est - Core</name>
+    <description>
+        This is the core package of Alea Iacta Est; it contains the ServiceLocator
+        to load the system-specific libraries, the Expression Engine and the 
+        common classes used pretty much everywhere in the app.
+    </description>
     <dependencies>
         <dependency>
             <groupId>org.javacord</groupId>
