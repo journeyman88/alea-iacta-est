@@ -32,6 +32,8 @@ At the moment of writing the systems supported are the following:
 | The Dark Eye 5th Edition  | `!alea da5`  | `!alea the-dark-eye-5th`  |
 | Vampire the Masquerade 5th Edition  | `!alea vt5`  | `!alea vampire-5th`  |
 
+For system-specific syntax and usage you can run the `!alea <system> -h` command or check in the github wiki for the system-specific page.
+
 
 ## Run-It-Yourself
 Aside from the official instance, you can run yourself an instance of the bot, simply by building the code and run it with the command line argument `--discordToken <YOUR_TOKEN_HERE>`.
