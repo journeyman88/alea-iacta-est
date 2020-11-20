@@ -13,6 +13,7 @@
 # Netbeans
 nbactions.xml
 nb-configuration.xml
+log4j2-config.xml
 
 # Package Files #
 *.jar
@@ -33,3 +34,4 @@ hs_err_pid*
 /alea-iacta-sys-brassage/target/
 /alea-iacta-sys-vampire5/target/
 /alea-iacta-core/target/
+/alea-iacta-sys-lexarcana2/target/

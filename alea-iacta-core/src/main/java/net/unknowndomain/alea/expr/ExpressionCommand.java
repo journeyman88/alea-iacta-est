@@ -58,13 +58,16 @@ public class ExpressionCommand extends Command
     {
         MessageBuilder retVal = new MessageBuilder();
         retVal.append("Expression Engine (expr) Help", MessageDecoration.BOLD, MessageDecoration.UNDERLINE).appendNewLine().appendNewLine();
-        retVal.append("The expr command performs and solves a simple set of addition/subtraction operations using the following dice annotation").appendNewLine();
-        retVal.append(" * NdX: roll N dice with X faces and sum them (es: 2d12)").appendNewLine();
-        retVal.append(" * N: add an Integer number (es: +5, -3)").appendNewLine();
-        retVal.append(" * NdXkY: roll N dice with X faces, sum the Y with the highest face value (es: 10d6k8)").appendNewLine();
-        retVal.append(" * NdX/Y: roll N dice with X faces, count the ones with a face value higher or equal than Y (es: 10d10/7)").appendNewLine();
-        retVal.append(" * NdX\\Y: roll N dice with X faces, count the ones with a face value lower or equal than Y (es: 10d10\\4)").appendNewLine();
-        retVal.append("These operation can be compounded in any way: 4d4/3  + 10d6k5 - 1d8 - 1d12\\5 +7").appendNewLine();
+        StringBuilder sb = new StringBuilder();
+        
+        sb.append("The expr command performs and solves a simple set of addition/subtraction operations using the following dice annotation").append("\n");
+        sb.append(" * NdX: roll N dice with X faces and sum them (es: 2d12)").append("\n");
+        sb.append(" * N: add an Integer number (es: +5, -3)").append("\n");
+        sb.append(" * NdXkY: roll N dice with X faces, sum the Y with the highest face value (es: 10d6k8)").append("\n");
+        sb.append(" * NdX/Y: roll N dice with X faces, count the ones with a face value higher or equal than Y (es: 10d10/7)").append("\n");
+        sb.append(" * NdX\\Y: roll N dice with X faces, count the ones with a face value lower or equal than Y (es: 10d10\\4)").append("\n");
+        sb.append("These operation can be compounded in any way: 4d4/3  + 10d6k5 - 1d8 - 1d12\\5 +7").append("\n");
+        retVal.append(sb.toString(), MessageDecoration.CODE_LONG);
         return retVal;
     }
     

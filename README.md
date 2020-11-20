@@ -26,6 +26,7 @@ At the moment of writing the systems supported are the following:
 | :------------ | :------------ | :------------ |
 | 7th Sea 2nd Edition  | `!alea 7s2`  | `!alea 7th-sea-2nd`  |
 | Brass Age  | `!alea ba1`  | `!alea brass-age`  |
+| Lex Arcana 2nd Edition  | `!alea lex`  | `!alea lex-arcana-2nd`  |
 | Project H.O.P.E. 2nd Edition  | `!alea ph2`  | `!alea project-hope-2nd`  |
 | Shadowrun 5th Edition  | `!alea sr5`  | `!alea shadowrun-5th`  |
 | The Dark Eye 5th Edition  | `!alea da5`  | `!alea the-dark-eye-5th`  |

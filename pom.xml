@@ -80,8 +80,58 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>2.22.2</version>
                 </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>1.4.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-toolchains-plugin</artifactId>
+                    <version>3.0.0</version>
+                    <configuration>
+                        <toolchains>
+                            <jdk>
+                                <version>1.8</version>
+                            </jdk>
+                        </toolchains>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
+        <plugins>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>enforce-maven</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireMavenVersion>
+                                    <version>3.1</version>
+                                </requireMavenVersion>
+                            </rules>    
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-toolchains-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>toolchain</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
     </build>
     <modules>
         <module>alea-iacta-bot</module>
@@ -92,6 +142,7 @@
         <module>alea-iacta-sys-darkeye5</module>
         <module>alea-iacta-sys-brassage</module>
         <module>alea-iacta-core</module>
+        <module>alea-iacta-sys-lexarcana2</module>
     </modules>
     <dependencyManagement>
         <dependencies>
