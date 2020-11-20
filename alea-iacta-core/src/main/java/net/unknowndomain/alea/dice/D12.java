@@ -21,6 +21,11 @@ package net.unknowndomain.alea.dice;
  */
 public class D12 extends DiceN
 {
+    public static final D12 INSTANCE = new D12();
+    
+    private D12()
+    {
+    }
 
     @Override
     public int getMinResult()

@@ -15,8 +15,7 @@
  */
 package net.unknowndomain.alea.expr;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import net.unknowndomain.alea.dice.DiceBuilder;
 import net.unknowndomain.alea.dice.DiceN;
 import net.unknowndomain.alea.pools.DicePool;
 
@@ -24,19 +23,11 @@ import net.unknowndomain.alea.pools.DicePool;
  *
  * @author journeyman
  */
-public class LowerPart extends DicePart
+public class SimplePart extends DicePart
 {
-    
-    private static final Pattern PATTERN = Pattern.compile("^(.*)\\\\(?<threshold>\\d+)$");
-    
-    private final int threshold;
-
-    public LowerPart(String exp)
+    public SimplePart(String exp)
     {
         super(exp);
-        Matcher m = PATTERN.matcher(exp);
-        m.find();
-        threshold = Integer.parseInt(m.group("threshold"));
     }
 
     @Override
@@ -45,10 +36,7 @@ public class LowerPart extends DicePart
         int sum = 0;
         for (Integer res : dicePool.getResults())
         {
-            if (res <= threshold)
-            {
-                sum ++;
-            }
+            sum += res;
         }
         return (isPositive() ? 1 : -1) * sum;
     }

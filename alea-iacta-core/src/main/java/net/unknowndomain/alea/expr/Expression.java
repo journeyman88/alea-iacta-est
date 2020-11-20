@@ -63,7 +63,7 @@ public class Expression
         while(diceMatch.find())
         {
             String diceEx = diceMatch.group("dice");
-            parts.add(new DicePart(diceEx));
+            parts.add(new SimplePart(diceEx));
         }
         modExpr = diceMatch.replaceAll("");
         Matcher modMatch = MOD_PATTERN.matcher(modExpr);

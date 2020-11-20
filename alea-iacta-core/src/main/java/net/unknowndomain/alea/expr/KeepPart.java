@@ -16,42 +16,25 @@
 package net.unknowndomain.alea.expr;
 
 import java.util.List;
-import net.unknowndomain.alea.dice.DiceN;
-import net.unknowndomain.alea.pools.DicePool;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
  * @author journeyman
  */
-public class KeepPart extends ExpPart
+public class KeepPart extends DicePart
 {
     
-    private final DicePool<DiceN> dicePool;
+    private static final Pattern PATTERN = Pattern.compile("^(.*)k(?<max>\\d+)$");
     private final int maxDice;
 
     public KeepPart(String exp)
     {
         super(exp);
-        String clean = exp.replaceAll("\\+|-", "").toLowerCase();
-        String [] values = clean.split("d|k");
-        Integer diceNumber = Integer.parseInt(values[0]);
-        Integer diceClass = Integer.parseInt(values[1]);
-        maxDice = Integer.parseInt(values[2]);
-        DiceN dice = new DiceN()
-        {
-            @Override
-            public int getMinResult()
-            {
-                return 1;
-            }
-
-            @Override
-            public int getMaxResult()
-            {
-                return diceClass;
-            }
-        };
-        dicePool = new DicePool<>(dice, diceNumber);
+        Matcher m = PATTERN.matcher(exp);
+        m.find();
+        maxDice = Integer.parseInt(m.group("max"));
     }
 
     @Override

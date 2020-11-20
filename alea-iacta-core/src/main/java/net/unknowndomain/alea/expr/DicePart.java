@@ -15,6 +15,9 @@
  */
 package net.unknowndomain.alea.expr;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import net.unknowndomain.alea.dice.DiceBuilder;
 import net.unknowndomain.alea.dice.DiceN;
 import net.unknowndomain.alea.pools.DicePool;
 
@@ -22,44 +25,19 @@ import net.unknowndomain.alea.pools.DicePool;
  *
  * @author journeyman
  */
-public class DicePart extends ExpPart
+public abstract class DicePart extends ExpPart
 {
-    
-    private final DicePool<DiceN> dicePool;
+    private static final Pattern PATTERN = Pattern.compile("^(\\+|-?)(?<number>\\d+)(?<class>d\\d+)(.*)$");
+    protected final DicePool<DiceN> dicePool;
 
     public DicePart(String exp)
     {
         super(exp);
-        String clean = exp.replaceAll("\\+|-", "").toLowerCase();
-        String [] values = clean.split("d");
-        Integer diceNumber = Integer.parseInt(values[0]);
-        Integer diceClass = Integer.parseInt(values[1]);
-        DiceN dice = new DiceN()
-        {
-            @Override
-            public int getMinResult()
-            {
-                return 1;
-            }
-
-            @Override
-            public int getMaxResult()
-            {
-                return diceClass;
-            }
-        };
+        Matcher m = PATTERN.matcher(exp);
+        m.find();
+        Integer diceNumber = Integer.parseInt(m.group("number"));
+        DiceN dice = DiceBuilder.parseDice(m.group("class"));
         dicePool = new DicePool<>(dice, diceNumber);
-    }
-
-    @Override
-    public Integer getResult()
-    {
-        int sum = 0;
-        for (Integer res : dicePool.getResults())
-        {
-            sum += res;
-        }
-        return (isPositive() ? 1 : -1) * sum;
     }
     
 }

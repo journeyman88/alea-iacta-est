@@ -15,6 +15,8 @@
  */
 package net.unknowndomain.alea.expr;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import net.unknowndomain.alea.dice.DiceN;
 import net.unknowndomain.alea.pools.DicePool;
 
@@ -22,35 +24,19 @@ import net.unknowndomain.alea.pools.DicePool;
  *
  * @author journeyman
  */
-public class UpperPart extends ExpPart
+public class UpperPart extends DicePart
 {
     
-    private final DicePool<DiceN> dicePool;
+    private static final Pattern PATTERN = Pattern.compile("^(.*)\\/(?<threshold>\\d+)$");
+    
     private final int threshold;
 
     public UpperPart(String exp)
     {
         super(exp);
-        String clean = exp.replaceAll("\\+|-", "").toLowerCase();
-        String [] values = clean.split("d|\\/");
-        Integer diceNumber = Integer.parseInt(values[0]);
-        Integer diceClass = Integer.parseInt(values[1]);
-        threshold = Integer.parseInt(values[2]);
-        DiceN dice = new DiceN()
-        {
-            @Override
-            public int getMinResult()
-            {
-                return 1;
-            }
-
-            @Override
-            public int getMaxResult()
-            {
-                return diceClass;
-            }
-        };
-        dicePool = new DicePool<>(dice, diceNumber);
+        Matcher m = PATTERN.matcher(exp);
+        m.find();
+        threshold = Integer.parseInt(m.group("threshold"));
     }
 
     @Override
