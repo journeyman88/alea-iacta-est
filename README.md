@@ -35,6 +35,13 @@ At the moment of writing the systems supported are the following:
 For system-specific syntax and usage you can run the `!alea <system> -h` command or check in the github wiki for the system-specific page.
 
 
+### Next implementations in line:
+
+ - Blacksad RPG : Base system implementation
+ - Shintiara RPG : Base system implementation
+ - 7th Sea 2nd Edition : Modifiers for increased Raise threshold and joie de vivre.
+
+
 ## Run-It-Yourself
 Aside from the official instance, you can run yourself an instance of the bot, simply by building the code and run it with the command line argument `--discordToken <YOUR_TOKEN_HERE>`.
 You can also exclude systems that you're not interested into, simply by removing the appropriate jar from classpath before running it.
