@@ -29,6 +29,8 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.javacord.api.entity.message.MessageBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -36,6 +38,7 @@ import org.javacord.api.entity.message.MessageBuilder;
  */
 public class LexArcana2Command extends RpgSystemCommand
 {
+    private static final Logger LOGGER = LoggerFactory.getLogger(LexArcana2Command.class);
     private static final RpgSystemDescriptor DESC = new RpgSystemDescriptor("Lex Arcana 2nd Edition", "lex", "lex-arcana-2nd");
     
     private static final String FIRST_DICE_PARAM = "first-dice";
@@ -111,6 +114,7 @@ public class LexArcana2Command extends RpgSystemCommand
             {
                 return HelpWrapper.printHelp(prefixMatcher.group(CMD_NAME), CMD_OPTIONS, true);
             }
+            LOGGER.debug(cmdLine);
             try
             {
                 CommandLineParser parser = new DefaultParser();

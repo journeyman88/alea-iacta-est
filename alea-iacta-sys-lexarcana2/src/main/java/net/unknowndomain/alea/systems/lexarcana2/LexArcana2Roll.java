@@ -22,6 +22,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import net.unknowndomain.alea.dice.DiceBuilder;
 import net.unknowndomain.alea.dice.DiceN;
 import net.unknowndomain.alea.roll.GenericRoll;
 import org.javacord.api.entity.message.MessageBuilder;
@@ -55,53 +56,14 @@ public class LexArcana2Roll implements GenericRoll
             this.mods.addAll(mod);
         }
         List<DiceN> tmp = new ArrayList<>();
-        tmp.add(new DiceN()
-        {
-            @Override
-            public int getMinResult()
-            {
-                return 1;
-            }
-
-            @Override
-            public int getMaxResult()
-            {
-                return first;
-            }
-        });
+        tmp.add(DiceBuilder.parseDice(first));
         if (second > 0)
         {
-            tmp.add(new DiceN()
-            {
-                @Override
-                public int getMinResult()
-                {
-                    return 1;
-                }
-
-                @Override
-                public int getMaxResult()
-                {
-                    return second;
-                }
-            });
+            tmp.add(DiceBuilder.parseDice(second));
         }
         if (third > 0)
         {
-            tmp.add(new DiceN()
-            {
-                @Override
-                public int getMinResult()
-                {
-                    return 1;
-                }
-
-                @Override
-                public int getMaxResult()
-                {
-                    return third;
-                }
-            });
+            tmp.add(DiceBuilder.parseDice(third));
         }
         this.diceList = Collections.unmodifiableList(tmp);
     }

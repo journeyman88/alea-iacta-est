@@ -13,6 +13,7 @@
     <developers>
         <developer>
             <id>journeyman88</id>
+            <name>Marco Bignami</name>
             <roles>
                 <role>Creator</role>
                 <role>Developer</role>
@@ -25,6 +26,7 @@
             <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
         </license>
     </licenses>
+    <inceptionYear>2020</inceptionYear>
     
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
