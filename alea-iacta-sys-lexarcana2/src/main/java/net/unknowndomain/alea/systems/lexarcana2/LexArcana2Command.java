@@ -134,6 +134,7 @@ public class LexArcana2Command extends RpgSystemCommand
                 String f = cmd.getOptionValue(FIRST_DICE_PARAM);
                 String s = cmd.getOptionValue(SECOND_DICE_PARAM);
                 String t = cmd.getOptionValue(THIRD_DICE_PARAM);
+                int fir = Integer.parseInt(f);
                 int sec = 0;
                 if ((s != null) && (!s.isEmpty()))
                 {
@@ -144,8 +145,15 @@ public class LexArcana2Command extends RpgSystemCommand
                 {
                     thi = Integer.parseInt(t);
                 }
-                roll = new LexArcana2Roll(Integer.parseInt(f), sec, thi, mods);
-                retVal = roll.getResult();
+                roll = new LexArcana2Roll(fir, sec, thi, mods);
+                if ((fir == 1) || (sec == 1) || (thi == 1 ))
+                {
+                    retVal = HelpWrapper.printHelp(prefixMatcher.group(CMD_NAME), CMD_OPTIONS, true);
+                }
+                else
+                {
+                    retVal = roll.getResult();
+                }
             } 
             catch (ParseException | NumberFormatException ex)
             {
