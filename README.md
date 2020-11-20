@@ -38,8 +38,7 @@ For system-specific syntax and usage you can run the `!alea <system> -h` command
 ### Next implementations in line:
 
  - Blacksad RPG : Base system implementation
- - Shintiara RPG : Base system implementation
- - 7th Sea 2nd Edition : Modifiers for increased Raise threshold and joie de vivre.
+ - Shintiara RPG (Modern d100) : Base system implementation
 
 
 ## Run-It-Yourself
