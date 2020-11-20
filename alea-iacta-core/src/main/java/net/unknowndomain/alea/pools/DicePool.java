@@ -17,6 +17,7 @@ package net.unknowndomain.alea.pools;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -36,16 +37,17 @@ public class DicePool<T extends GenericDice>
     
     public DicePool(T diceClass, int numberOfDice, Integer ... explodingValues)
     {
+        this(diceClass, numberOfDice, Arrays.asList(explodingValues));
+    }
+    
+    public DicePool(T diceClass, int numberOfDice, Collection<Integer> explodingValues)
+    {
         this.diceClass = diceClass;
         this.numberOfDice = numberOfDice;
         Set<Integer> tmpSet = new HashSet<>();
-        if (explodingValues != null)
+        if ((explodingValues != null) && !explodingValues.isEmpty())
         {
-            List<Integer> tmpEX = Arrays.asList(explodingValues);
-            if (!tmpEX.isEmpty())
-            {
-                tmpSet.addAll(tmpEX);
-            }
+            tmpSet.addAll(explodingValues);
         }
         this.explodingValues = Collections.unmodifiableSet(tmpSet);
     }
