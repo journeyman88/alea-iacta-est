@@ -25,10 +25,12 @@ At the moment of writing the systems supported are the following:
 | System  | Shortcut  | Command  |
 | :------------ | :------------ | :------------ |
 | 7th Sea 2nd Edition  | `!alea 7s2`  | `!alea 7th-sea-2nd`  |
+| Blacksad RPG  | `!alea sad`  | `!alea blacksad`  |
 | Brass Age  | `!alea ba1`  | `!alea brass-age`  |
 | Lex Arcana 2nd Edition  | `!alea lex`  | `!alea lex-arcana-2nd`  |
 | Project H.O.P.E. 2nd Edition  | `!alea ph2`  | `!alea project-hope-2nd`  |
 | Shadowrun 5th Edition  | `!alea sr5`  | `!alea shadowrun-5th`  |
+| Shintiara RPG  | `!alea shn`  | `!alea shintiara`  |
 | The Dark Eye 5th Edition  | `!alea da5`  | `!alea the-dark-eye-5th`  |
 | Vampire the Masquerade 5th Edition  | `!alea vt5`  | `!alea vampire-5th`  |
 
@@ -36,9 +38,6 @@ For system-specific syntax and usage you can run the `!alea <system> -h` command
 
 
 ### Next implementations in line:
-
- - Blacksad RPG : Base system implementation
- - Shintiara RPG (Modern d100) : Base system implementation
 
 
 ## Run-It-Yourself
