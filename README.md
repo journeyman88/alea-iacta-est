@@ -39,6 +39,11 @@ For system-specific syntax and usage you can run the `!alea <system> -h` command
 
 ### Next implementations in line:
 
+- Global refactoring to abstract both core and systems from the discord specific libraries, to make it possible to eventually switch it in case it goes unsupported.
+- AGE system : base roll
+- Blacksad RPG : roll modifiers
+- FATE Core : base roll
+- Walkthrough : base roll
 
 ## Run-It-Yourself
 Aside from the official instance, you can run yourself an instance of the bot, simply by building the code and run it with the command line argument `--discordToken <YOUR_TOKEN_HERE>`.
