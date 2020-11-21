@@ -145,6 +145,7 @@
         <module>alea-iacta-sys-brassage</module>
         <module>alea-iacta-core</module>
         <module>alea-iacta-sys-lexarcana2</module>
+        <module>alea-iacta-sys-blacksad</module>
     </modules>
     <dependencyManagement>
         <dependencies>
