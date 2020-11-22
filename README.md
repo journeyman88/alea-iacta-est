@@ -39,7 +39,6 @@ For system-specific syntax and usage you can run the `!alea <system> -h` command
 
 ### Next implementations in line:
 
-- Global refactoring to abstract both core and systems from the discord specific libraries, to make it possible to eventually switch it in case it goes unsupported.
 - AGE system : base roll
 - Blacksad RPG : roll modifiers
 - FATE Core : base roll
