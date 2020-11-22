@@ -16,18 +16,19 @@
 package net.unknowndomain.alea.systems.lexarcana2;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import net.unknowndomain.alea.messages.MsgBuilder;
+import net.unknowndomain.alea.roll.GenericResult;
 
 /**
  *
  * @author journeyman
  */
-public class LexArcana2Results
+public class LexArcana2Results extends GenericResult
 {
     private final List<Integer> results;
+    private int poolSize;
     
     public LexArcana2Results(List<Integer> results)
     {
@@ -50,6 +51,46 @@ public class LexArcana2Results
             sum += r;
         }
         return sum;
+    }
+
+    @Override
+    protected void formatResults(MsgBuilder messageBuilder, boolean verbose, int indentValue)
+    {
+        messageBuilder.append("Total: ").append(getTotal()).appendNewLine();
+        if (verbose)
+        {
+            messageBuilder.append("Results: ").append(" [ ");
+            int round = 1;
+            for (Integer t : getResults())
+            {
+                if (round == 1)
+                {
+                    messageBuilder.append("( ");
+                }
+                messageBuilder.append(t);
+                if (round == poolSize)
+                {
+                    messageBuilder.append("); ");
+                    round = 1;
+                }
+                else
+                {
+                    messageBuilder.append(", ");
+                    round++;
+                }
+            }
+            messageBuilder.append("]\n");
+        }
+    }
+
+    public int getPoolSize()
+    {
+        return poolSize;
+    }
+
+    public void setPoolSize(int poolSize)
+    {
+        this.poolSize = poolSize;
     }
 
 }

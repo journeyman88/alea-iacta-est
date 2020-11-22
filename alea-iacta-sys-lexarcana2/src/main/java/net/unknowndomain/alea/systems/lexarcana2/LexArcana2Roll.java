@@ -24,8 +24,7 @@ import java.util.List;
 import java.util.Set;
 import net.unknowndomain.alea.dice.DiceBuilder;
 import net.unknowndomain.alea.dice.DiceN;
-import net.unknowndomain.alea.messages.MsgBuilder;
-import net.unknowndomain.alea.messages.ReturnMsg;
+import net.unknowndomain.alea.roll.GenericResult;
 import net.unknowndomain.alea.roll.GenericRoll;
 
 /**
@@ -70,41 +69,12 @@ public class LexArcana2Roll implements GenericRoll
     }
     
     @Override
-    public ReturnMsg getResult()
+    public GenericResult getResult()
     {
         LexArcana2Results results = buildResults();
-        return formatResults(results);
-    }
-    
-    private ReturnMsg formatResults(LexArcana2Results results)
-    {
-        MsgBuilder mb = new MsgBuilder();
-        mb.append("Total: ").append(results.getTotal()).appendNewLine();
-        if (mods.contains(Modifiers.VERBOSE))
-        {
-            mb.append("Results: ").append(" [ ");
-            int round = 1;
-            for (Integer t : results.getResults())
-            {
-                if (round == 1)
-                {
-                    mb.append("( ");
-                }
-                mb.append(t);
-                if (round == this.diceList.size())
-                {
-                    mb.append("); ");
-                    round = 1;
-                }
-                else
-                {
-                    mb.append(", ");
-                    round++;
-                }
-            }
-            mb.append("]\n");
-        }
-        return mb.build();
+        results.setVerbose(mods.contains(Modifiers.VERBOSE));
+        results.setPoolSize(this.diceList.size());
+        return results;
     }
     
     private LexArcana2Results buildResults()
