@@ -21,10 +21,9 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
-import net.unknowndomain.alea.dice.D10;
-import net.unknowndomain.alea.dice.D100;
-import net.unknowndomain.alea.messages.MsgBuilder;
-import net.unknowndomain.alea.messages.ReturnMsg;
+import net.unknowndomain.alea.dice.standard.D10;
+import net.unknowndomain.alea.dice.standard.D100;
+import net.unknowndomain.alea.roll.GenericResult;
 import net.unknowndomain.alea.roll.GenericRoll;
 
 /**
@@ -76,46 +75,12 @@ public class ShintiaraRoll implements GenericRoll
     }
     
     @Override
-    public ReturnMsg getResult()
+    public GenericResult getResult()
     {
         ShintiaraResults results = buildResults(D100.INSTANCE.roll(), (D10.INSTANCE.roll() -1));
-        return formatResults(results);
-    }
-    
-    private ReturnMsg formatResults(ShintiaraResults results)
-    {
-        MsgBuilder mb = new MsgBuilder();
-        if (results.isAutoSuccess())
-        {
-            mb.append("Automatic success");
-        }
-        else if (results.isCriticalSuccess())
-        {
-            mb.append("Critical success");
-        }
-        else if (results.isCriticalFailure())
-        {
-            mb.append("Critical failure");
-        }
-        else if (results.isSuccess())
-        {
-            mb.append("Success");
-        }
-        else
-        {
-            mb.append("Failure");
-        }
-        mb.appendNewLine();
-        if (mods.contains(Modifiers.VERBOSE))
-        {
-            mb.append("Result: ").append(results.getResult());
-            if (netVantage != 0)
-            {
-                mb.append(" Asset: ").append(results.getAssetResult() * 10);
-            }
-            mb.appendNewLine();
-        }
-        return mb.build();
+        results.setShowAsset(netVantage != 0);
+        results.setVerbose(mods.contains(Modifiers.VERBOSE));
+        return results;
     }
     
     private ShintiaraResults buildResults(Integer result, Integer assetDice)

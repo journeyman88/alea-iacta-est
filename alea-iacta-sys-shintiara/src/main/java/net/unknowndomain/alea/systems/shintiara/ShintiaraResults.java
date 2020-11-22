@@ -15,11 +15,14 @@
  */
 package net.unknowndomain.alea.systems.shintiara;
 
+import net.unknowndomain.alea.messages.MsgBuilder;
+import net.unknowndomain.alea.roll.GenericResult;
+
 /**
  *
  * @author journeyman
  */
-public class ShintiaraResults
+public class ShintiaraResults extends GenericResult
 {
     private final Integer result;
     private final Integer assetResult;
@@ -27,6 +30,7 @@ public class ShintiaraResults
     private boolean criticalSuccess;
     private boolean criticalFailure;
     private boolean success;
+    private boolean showAsset = false;
     
     public ShintiaraResults(Integer result, Integer assetResult)
     {
@@ -82,6 +86,51 @@ public class ShintiaraResults
     public Integer getAssetResult()
     {
         return assetResult;
+    }
+
+    @Override
+    protected void formatResults(MsgBuilder messageBuilder, boolean verbose, int indentValue)
+    {
+        if (isAutoSuccess())
+        {
+            messageBuilder.append("Automatic success");
+        }
+        else if (isCriticalSuccess())
+        {
+            messageBuilder.append("Critical success");
+        }
+        else if (isCriticalFailure())
+        {
+            messageBuilder.append("Critical failure");
+        }
+        else if (isSuccess())
+        {
+            messageBuilder.append("Success");
+        }
+        else
+        {
+            messageBuilder.append("Failure");
+        }
+        messageBuilder.appendNewLine();
+        if (verbose)
+        {
+            messageBuilder.append("Result: ").append(getResult());
+            if (showAsset)
+            {
+                messageBuilder.append(" Asset: ").append(getAssetResult() * 10);
+            }
+            messageBuilder.appendNewLine();
+        }
+    }
+
+    public boolean isShowAsset()
+    {
+        return showAsset;
+    }
+
+    public void setShowAsset(boolean showAsset)
+    {
+        this.showAsset = showAsset;
     }
 
 }
