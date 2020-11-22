@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Marco Bignami.
+ * Copyright 2020 journeyman.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,17 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.unknowndomain.alea.roll;
-
-import net.unknowndomain.alea.messages.ReturnMsg;
+package net.unknowndomain.alea.messages;
 
 /**
  *
  * @author journeyman
  */
-public interface GenericRoll
+public enum MsgStyle
 {
-
-    ReturnMsg getResult();
-    
+    BOLD,
+    ITALIC,
+    UNDERLINE,
+    STRIKEOUT,
+    CODE,
+    SPOILER
 }

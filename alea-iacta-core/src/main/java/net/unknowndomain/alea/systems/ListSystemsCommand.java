@@ -18,9 +18,10 @@ package net.unknowndomain.alea.systems;
 import java.util.ArrayList;
 import java.util.List;
 import net.unknowndomain.alea.command.Command;
+import net.unknowndomain.alea.messages.MsgBuilder;
+import net.unknowndomain.alea.messages.MsgStyle;
+import net.unknowndomain.alea.messages.ReturnMsg;
 import org.apache.commons.lang3.StringUtils;
-import org.javacord.api.entity.message.MessageBuilder;
-import org.javacord.api.entity.message.MessageDecoration;
 
 /**
  *
@@ -36,9 +37,9 @@ public class ListSystemsCommand extends Command
     }
 
     @Override
-    public MessageBuilder execCommand(String cmdLine)
+    public ReturnMsg execCommand(String cmdLine)
     {
-        MessageBuilder output = new MessageBuilder();
+        MsgBuilder output = new MsgBuilder();
         List<RpgSystemDescriptor> desc = new ArrayList<>();
         int nameL = 0;
         for (RpgSystemCommand cmd : RpgSystemCommand.LOADER)
@@ -60,8 +61,8 @@ public class ListSystemsCommand extends Command
                     .append(" [ ").append(d.getShortcut()).
                     append(" | ").append(d.getCommand()).append(" ]\n");
         }
-        output.append(sb.toString(), MessageDecoration.CODE_LONG);
-        return output;
+        output.append(sb.toString(), MsgStyle.CODE);
+        return output.build();
     }
     
 }

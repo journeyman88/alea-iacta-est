@@ -17,8 +17,8 @@ package net.unknowndomain.alea.systems.lexarcana2;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.regex.Matcher;
 import net.unknowndomain.alea.command.HelpWrapper;
+import net.unknowndomain.alea.messages.ReturnMsg;
 import net.unknowndomain.alea.systems.RpgSystemCommand;
 import net.unknowndomain.alea.systems.RpgSystemDescriptor;
 import net.unknowndomain.alea.roll.GenericRoll;
@@ -28,7 +28,6 @@ import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
-import org.javacord.api.entity.message.MessageBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -101,68 +100,68 @@ public class LexArcana2Command extends RpgSystemCommand
     {
         return DESC;
     }
+
+    @Override
+    protected Logger getLogger()
+    {
+        return LOGGER;
+    }
     
     @Override
-    public MessageBuilder execCommand(String cmdLine)
+    protected ReturnMsg safeCommand(String cmdName, String cmdParams)
     {
-        MessageBuilder retVal = new MessageBuilder();
-        Matcher prefixMatcher = PREFIX.matcher(cmdLine);
-        if (prefixMatcher.matches())
+        ReturnMsg retVal;
+        if (cmdParams == null || cmdParams.isEmpty())
         {
-            String params = prefixMatcher.group(CMD_PARAMS);
-            if (params == null || params.isEmpty())
+            return HelpWrapper.printHelp(cmdName, CMD_OPTIONS, true);
+        }
+        try
+        {
+            CommandLineParser parser = new DefaultParser();
+            CommandLine cmd = parser.parse(CMD_OPTIONS, cmdParams.split(" "));
+            if (
+                    cmd.hasOption(CMD_HELP) || 
+                    (cmd.hasOption(SECOND_DICE_PARAM) && (! cmd.hasOption(FIRST_DICE_PARAM))) || 
+                    (cmd.hasOption(THIRD_DICE_PARAM) && (! cmd.hasOption(SECOND_DICE_PARAM)))
+                )
             {
-                return HelpWrapper.printHelp(prefixMatcher.group(CMD_NAME), CMD_OPTIONS, true);
+                return HelpWrapper.printHelp(cmdName, CMD_OPTIONS, true);
             }
-            LOGGER.debug(cmdLine);
-            try
+
+            Set<LexArcana2Roll.Modifiers> mods = new HashSet<>();
+
+            if (cmd.hasOption(CMD_VERBOSE))
             {
-                CommandLineParser parser = new DefaultParser();
-                CommandLine cmd = parser.parse(CMD_OPTIONS, params.split(" "));
-                if (
-                        cmd.hasOption(CMD_HELP) || 
-                        (cmd.hasOption(SECOND_DICE_PARAM) && (! cmd.hasOption(FIRST_DICE_PARAM))) || 
-                        (cmd.hasOption(THIRD_DICE_PARAM) && (! cmd.hasOption(SECOND_DICE_PARAM)))
-                    )
-                {
-                    return HelpWrapper.printHelp(prefixMatcher.group(CMD_NAME), CMD_OPTIONS, true);
-                }
-                
-                Set<LexArcana2Roll.Modifiers> mods = new HashSet<>();
-                
-                if (cmd.hasOption(CMD_VERBOSE))
-                {
-                    mods.add(LexArcana2Roll.Modifiers.VERBOSE);
-                }
-                GenericRoll roll;
-                String f = cmd.getOptionValue(FIRST_DICE_PARAM);
-                String s = cmd.getOptionValue(SECOND_DICE_PARAM);
-                String t = cmd.getOptionValue(THIRD_DICE_PARAM);
-                int fir = Integer.parseInt(f);
-                int sec = 0;
-                if ((s != null) && (!s.isEmpty()))
-                {
-                    sec = Integer.parseInt(s);
-                }
-                int thi = 0;
-                if ((t != null) && (!t.isEmpty()))
-                {
-                    thi = Integer.parseInt(t);
-                }
-                roll = new LexArcana2Roll(fir, sec, thi, mods);
-                if ((fir == 1) || (sec == 1) || (thi == 1 ))
-                {
-                    retVal = HelpWrapper.printHelp(prefixMatcher.group(CMD_NAME), CMD_OPTIONS, true);
-                }
-                else
-                {
-                    retVal = roll.getResult();
-                }
-            } 
-            catch (ParseException | NumberFormatException ex)
-            {
-                retVal = HelpWrapper.printHelp(prefixMatcher.group(CMD_NAME), CMD_OPTIONS, true);
+                mods.add(LexArcana2Roll.Modifiers.VERBOSE);
             }
+            GenericRoll roll;
+            String f = cmd.getOptionValue(FIRST_DICE_PARAM);
+            String s = cmd.getOptionValue(SECOND_DICE_PARAM);
+            String t = cmd.getOptionValue(THIRD_DICE_PARAM);
+            int fir = Integer.parseInt(f);
+            int sec = 0;
+            if ((s != null) && (!s.isEmpty()))
+            {
+                sec = Integer.parseInt(s);
+            }
+            int thi = 0;
+            if ((t != null) && (!t.isEmpty()))
+            {
+                thi = Integer.parseInt(t);
+            }
+            roll = new LexArcana2Roll(fir, sec, thi, mods);
+            if ((fir == 1) || (sec == 1) || (thi == 1 ))
+            {
+                retVal = HelpWrapper.printHelp(cmdName, CMD_OPTIONS, true);
+            }
+            else
+            {
+                retVal = roll.getResult();
+            }
+        } 
+        catch (ParseException | NumberFormatException ex)
+        {
+            retVal = HelpWrapper.printHelp(cmdName, CMD_OPTIONS, true);
         }
         return retVal;
     }

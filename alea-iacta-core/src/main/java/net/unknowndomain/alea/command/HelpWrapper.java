@@ -17,10 +17,11 @@ package net.unknowndomain.alea.command;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import net.unknowndomain.alea.messages.MsgBuilder;
+import net.unknowndomain.alea.messages.MsgStyle;
+import net.unknowndomain.alea.messages.ReturnMsg;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
-import org.javacord.api.entity.message.MessageBuilder;
-import org.javacord.api.entity.message.MessageDecoration;
 
 /**
  *
@@ -28,16 +29,16 @@ import org.javacord.api.entity.message.MessageDecoration;
  */
 public class HelpWrapper
 {
-    public static MessageBuilder printHelp(String commandName, Options opts, boolean autoUsage)
+    public static ReturnMsg printHelp(String commandName, Options opts, boolean autoUsage)
     {
-        MessageBuilder mb = new MessageBuilder();
+        MsgBuilder mb = new MsgBuilder();
         HelpFormatter formatter = new HelpFormatter();
         StringWriter out = new StringWriter();
         PrintWriter pw = new PrintWriter(out);
 
         formatter.printHelp(pw, 80, commandName, null, opts, formatter.getLeftPadding(), formatter.getDescPadding(), null, autoUsage);
         pw.flush();
-        mb.append(out.toString(), MessageDecoration.CODE_LONG);
-        return mb;
+        mb.append(out.toString(), MsgStyle.CODE);
+        return mb.build();
     }
 }

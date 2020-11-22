@@ -16,7 +16,11 @@
 package net.unknowndomain.alea.systems;
 
 import java.util.ServiceLoader;
+import java.util.regex.Matcher;
 import net.unknowndomain.alea.command.Command;
+import net.unknowndomain.alea.messages.MsgBuilder;
+import net.unknowndomain.alea.messages.ReturnMsg;
+import org.slf4j.Logger;
 
 /**
  *
@@ -35,5 +39,25 @@ public abstract class RpgSystemCommand extends Command
     }
     
     public abstract RpgSystemDescriptor getCommandDesc();
+    
+    protected abstract Logger getLogger();
+    
+    
+    protected abstract ReturnMsg safeCommand(String cmdName, String cmdParams);
+    
+    
+    @Override
+    public ReturnMsg execCommand(String cmdLine)
+    {
+        MsgBuilder errorBuilder = new MsgBuilder();
+        ReturnMsg retVal = errorBuilder.append("Unexpected Error").build();
+        Matcher prefixMatcher = PREFIX.matcher(cmdLine);
+        if (prefixMatcher.matches())
+        {
+            getLogger().debug(cmdLine);
+            retVal = safeCommand(prefixMatcher.group(CMD_NAME), prefixMatcher.group(CMD_PARAMS));
+        }
+        return retVal;
+    }
     
 }

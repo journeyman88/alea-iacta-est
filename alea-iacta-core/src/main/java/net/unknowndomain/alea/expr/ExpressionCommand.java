@@ -17,8 +17,9 @@ package net.unknowndomain.alea.expr;
 
 import java.util.regex.Matcher;
 import net.unknowndomain.alea.command.Command;
-import org.javacord.api.entity.message.MessageBuilder;
-import org.javacord.api.entity.message.MessageDecoration;
+import net.unknowndomain.alea.messages.MsgBuilder;
+import net.unknowndomain.alea.messages.MsgStyle;
+import net.unknowndomain.alea.messages.ReturnMsg;
 
 /**
  *
@@ -34,9 +35,9 @@ public class ExpressionCommand extends Command
     }
 
     @Override
-    public MessageBuilder execCommand(String cmdLine)
+    public ReturnMsg execCommand(String cmdLine)
     {
-        MessageBuilder retVal = new MessageBuilder();
+        MsgBuilder retVal = new MsgBuilder();
         Matcher prefixMatcher = PREFIX.matcher(cmdLine);
         if (prefixMatcher.matches())
         {
@@ -48,16 +49,16 @@ public class ExpressionCommand extends Command
             {
                 String params = prefixMatcher.group(CMD_PARAMS);
                 Expression solver = new Expression(params);
-                retVal.append(params).append(" = ").append(solver.getResult().toString(), MessageDecoration.BOLD);
+                retVal.append(params).append(" = ").append(solver.getResult().toString(), MsgStyle.BOLD);
             }
         }
-        return retVal;
+        return retVal.build();
     }
     
-    public MessageBuilder printHelp()
+    public ReturnMsg printHelp()
     {
-        MessageBuilder retVal = new MessageBuilder();
-        retVal.append("Expression Engine (expr) Help", MessageDecoration.BOLD, MessageDecoration.UNDERLINE).appendNewLine().appendNewLine();
+        MsgBuilder retVal = new MsgBuilder();
+        retVal.append("Expression Engine (expr) Help", MsgStyle.BOLD, MsgStyle.UNDERLINE).append("\n").append("\n");
         StringBuilder sb = new StringBuilder();
         
         sb.append("The expr command performs and solves a simple set of addition/subtraction operations using the following dice annotation").append("\n");
@@ -67,8 +68,8 @@ public class ExpressionCommand extends Command
         sb.append(" * NdX/Y: roll N dice with X faces, count the ones with a face value higher or equal than Y (es: 10d10/7)").append("\n");
         sb.append(" * NdX\\Y: roll N dice with X faces, count the ones with a face value lower or equal than Y (es: 10d10\\4)").append("\n");
         sb.append("These operation can be compounded in any way: 4d4/3  + 10d6k5 - 1d8 - 1d12\\5 +7").append("\n");
-        retVal.append(sb.toString(), MessageDecoration.CODE_LONG);
-        return retVal;
+        retVal.append(sb.toString(), MsgStyle.CODE);
+        return retVal.build();
     }
     
 }

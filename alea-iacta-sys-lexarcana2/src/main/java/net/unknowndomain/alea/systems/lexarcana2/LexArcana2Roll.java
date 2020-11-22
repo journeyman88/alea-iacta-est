@@ -24,8 +24,9 @@ import java.util.List;
 import java.util.Set;
 import net.unknowndomain.alea.dice.DiceBuilder;
 import net.unknowndomain.alea.dice.DiceN;
+import net.unknowndomain.alea.messages.MsgBuilder;
+import net.unknowndomain.alea.messages.ReturnMsg;
 import net.unknowndomain.alea.roll.GenericRoll;
-import org.javacord.api.entity.message.MessageBuilder;
 
 /**
  *
@@ -69,15 +70,15 @@ public class LexArcana2Roll implements GenericRoll
     }
     
     @Override
-    public MessageBuilder getResult()
+    public ReturnMsg getResult()
     {
         LexArcana2Results results = buildResults();
         return formatResults(results);
     }
     
-    private MessageBuilder formatResults(LexArcana2Results results)
+    private ReturnMsg formatResults(LexArcana2Results results)
     {
-        MessageBuilder mb = new MessageBuilder();
+        MsgBuilder mb = new MsgBuilder();
         mb.append("Total: ").append(results.getTotal()).appendNewLine();
         if (mods.contains(Modifiers.VERBOSE))
         {
@@ -103,7 +104,7 @@ public class LexArcana2Roll implements GenericRoll
             }
             mb.append("]\n");
         }
-        return mb;
+        return mb.build();
     }
     
     private LexArcana2Results buildResults()

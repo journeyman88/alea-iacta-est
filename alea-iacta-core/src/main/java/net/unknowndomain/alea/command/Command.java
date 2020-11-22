@@ -17,7 +17,7 @@ package net.unknowndomain.alea.command;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.javacord.api.entity.message.MessageBuilder;
+import net.unknowndomain.alea.messages.ReturnMsg;
 
 /**
  *
@@ -39,5 +39,5 @@ public abstract class Command
         Matcher matcher = PREFIX.matcher(cmdLine);
         return matcher.matches();
     }
-    public abstract MessageBuilder execCommand(String cmdLine);
+    public abstract ReturnMsg execCommand(String cmdLine);
 }

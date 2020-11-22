@@ -23,8 +23,9 @@ import java.util.HashSet;
 import java.util.Set;
 import net.unknowndomain.alea.dice.D10;
 import net.unknowndomain.alea.dice.D100;
+import net.unknowndomain.alea.messages.MsgBuilder;
+import net.unknowndomain.alea.messages.ReturnMsg;
 import net.unknowndomain.alea.roll.GenericRoll;
-import org.javacord.api.entity.message.MessageBuilder;
 
 /**
  *
@@ -75,15 +76,15 @@ public class ShintiaraRoll implements GenericRoll
     }
     
     @Override
-    public MessageBuilder getResult()
+    public ReturnMsg getResult()
     {
         ShintiaraResults results = buildResults(D100.INSTANCE.roll(), (D10.INSTANCE.roll() -1));
         return formatResults(results);
     }
     
-    private MessageBuilder formatResults(ShintiaraResults results)
+    private ReturnMsg formatResults(ShintiaraResults results)
     {
-        MessageBuilder mb = new MessageBuilder();
+        MsgBuilder mb = new MsgBuilder();
         if (results.isAutoSuccess())
         {
             mb.append("Automatic success");
@@ -114,7 +115,7 @@ public class ShintiaraRoll implements GenericRoll
             }
             mb.appendNewLine();
         }
-        return mb;
+        return mb.build();
     }
     
     private ShintiaraResults buildResults(Integer result, Integer assetDice)

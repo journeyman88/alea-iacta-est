@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Marco Bignami.
+ * Copyright 2020 journeyman.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,17 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.unknowndomain.alea.roll;
+package net.unknowndomain.alea.messages;
 
-import net.unknowndomain.alea.messages.ReturnMsg;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  *
  * @author journeyman
  */
-public interface GenericRoll
+public class ReturnMsg
 {
-
-    ReturnMsg getResult();
+    private final List<MsgPart> parts;
+    
+    protected ReturnMsg(List<MsgPart> parts)
+    {
+        List<MsgPart> tmp = new ArrayList<>(parts.size());
+        tmp.addAll(parts);
+        this.parts = Collections.unmodifiableList(tmp);
+    }
+    
+    public List<MsgPart> getParts()
+    {
+        return parts;
+    }
+    
     
 }
