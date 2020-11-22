@@ -13,30 +13,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.unknowndomain.alea.dice;
+package net.unknowndomain.alea.roll;
+
+import net.unknowndomain.alea.messages.MsgBuilder;
+import net.unknowndomain.alea.messages.ReturnMsg;
 
 /**
  *
  * @author journeyman
  */
-public class D20 extends DiceN
+public abstract class GenericResult
 {
-
-    public static final D20 INSTANCE = new D20();
+    private boolean verbose;
     
-    private D20()
+    public ReturnMsg getMessage()
     {
-    }
-    @Override
-    public int getMinResult()
-    {
-        return 1;
-    }
-
-    @Override
-    public int getMaxResult()
-    {
-        return 20;
+        MsgBuilder msg = new MsgBuilder();
+        formatResults(msg, verbose, 0);
+        return msg.build();
     }
     
+    protected abstract void formatResults(MsgBuilder messageBuilder, boolean verbose, int indentValue);
+
+    public boolean isVerbose()
+    {
+        return verbose;
+    }
+
+    public void setVerbose(boolean verbose)
+    {
+        this.verbose = verbose;
+    }
 }

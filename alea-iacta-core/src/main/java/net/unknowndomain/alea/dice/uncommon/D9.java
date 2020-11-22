@@ -13,15 +13,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.unknowndomain.alea.roll;
+package net.unknowndomain.alea.dice.uncommon;
+
+import net.unknowndomain.alea.dice.DiceN;
 
 /**
  *
  * @author journeyman
  */
-public interface GenericRoll
+public class D9 extends DiceN
 {
 
-    GenericResult getResult();
+    public static final D9 INSTANCE = new D9();
+    
+    private D9()
+    {
+    }
+    
+    @Override
+    public int getMinResult()
+    {
+        return 1;
+    }
+
+    @Override
+    public int getMaxResult()
+    {
+        return 9;
+    }
     
 }

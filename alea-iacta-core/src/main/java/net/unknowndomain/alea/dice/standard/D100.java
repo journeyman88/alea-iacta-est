@@ -13,15 +13,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.unknowndomain.alea.roll;
+package net.unknowndomain.alea.dice.standard;
+
+import net.unknowndomain.alea.dice.DiceN;
 
 /**
  *
  * @author journeyman
  */
-public interface GenericRoll
+public class D100 extends DiceN
 {
+    public static final D100 INSTANCE = new D100();
+    
+    private D100()
+    {
+    }
 
-    GenericResult getResult();
+    @Override
+    public int getMinResult()
+    {
+        return 1;
+    }
+
+    @Override
+    public int getMaxResult()
+    {
+        return 100;
+    }
     
 }

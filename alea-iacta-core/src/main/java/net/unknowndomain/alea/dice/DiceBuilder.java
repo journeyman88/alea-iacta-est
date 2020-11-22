@@ -15,6 +15,8 @@
  */
 package net.unknowndomain.alea.dice;
 
+import net.unknowndomain.alea.dice.standard.*;
+import net.unknowndomain.alea.dice.uncommon.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,12 +31,25 @@ public class DiceBuilder
     
     static {
         REGISTRY = new HashMap<>();
+        REGISTRY.put("d3"  , D3.INSTANCE);
         REGISTRY.put("d4"  , D4.INSTANCE);
+        REGISTRY.put("d5"  , D5.INSTANCE);
         REGISTRY.put("d6"  , D6.INSTANCE);
+        REGISTRY.put("d7"  , D7.INSTANCE);
         REGISTRY.put("d8"  , D8.INSTANCE);
+        REGISTRY.put("d9"  , D9.INSTANCE);
         REGISTRY.put("d10" , D10.INSTANCE);
+        REGISTRY.put("d11" , D11.INSTANCE);
         REGISTRY.put("d12" , D12.INSTANCE);
+        REGISTRY.put("d13" , D13.INSTANCE);
+        REGISTRY.put("d14" , D14.INSTANCE);
+        REGISTRY.put("d15" , D15.INSTANCE);
+        REGISTRY.put("d16" , D16.INSTANCE);
+        REGISTRY.put("d18" , D18.INSTANCE);
         REGISTRY.put("d20" , D20.INSTANCE);
+        REGISTRY.put("d22" , D22.INSTANCE);
+        REGISTRY.put("d24" , D24.INSTANCE);
+        REGISTRY.put("d30" , D30.INSTANCE);
         REGISTRY.put("d100", D100.INSTANCE);
     }
     

@@ -13,31 +13,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.unknowndomain.alea.dice;
+package net.unknowndomain.alea.dice.uncommon;
+
+import net.unknowndomain.alea.dice.DiceN;
 
 /**
- *
+ * Implementation of the Fudge Dice AKA Fate Dice
+ * 
  * @author journeyman
  */
-public class D6 extends DiceN
+public class DF extends DiceN
 {
-
-    public static final D6 INSTANCE = new D6();
+    public static final DF INSTANCE = new DF();
     
-    private D6()
+    private DF()
     {
     }
-    
+
     @Override
     public int getMinResult()
     {
-        return 1;
+        return -1;
     }
 
     @Override
     public int getMaxResult()
     {
-        return 6;
+        return 3;
     }
     
 }

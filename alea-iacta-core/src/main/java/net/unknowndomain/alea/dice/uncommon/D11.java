@@ -13,17 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.unknowndomain.alea.dice;
+package net.unknowndomain.alea.dice.uncommon;
+
+import net.unknowndomain.alea.dice.DiceN;
 
 /**
  *
  * @author journeyman
  */
-public class D10 extends DiceN
+public class D11 extends DiceN
 {
-    public static final D10 INSTANCE = new D10();
+    public static final D11 INSTANCE = new D11();
     
-    private D10()
+    private D11()
     {
     }
 
@@ -36,7 +38,7 @@ public class D10 extends DiceN
     @Override
     public int getMaxResult()
     {
-        return 10;
+        return 11;
     }
     
 }

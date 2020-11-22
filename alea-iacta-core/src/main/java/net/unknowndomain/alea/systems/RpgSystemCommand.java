@@ -15,11 +15,14 @@
  */
 package net.unknowndomain.alea.systems;
 
+import java.util.Optional;
 import java.util.ServiceLoader;
 import java.util.regex.Matcher;
 import net.unknowndomain.alea.command.Command;
+import net.unknowndomain.alea.command.HelpWrapper;
 import net.unknowndomain.alea.messages.MsgBuilder;
 import net.unknowndomain.alea.messages.ReturnMsg;
+import net.unknowndomain.alea.roll.GenericRoll;
 import org.slf4j.Logger;
 
 /**
@@ -43,7 +46,7 @@ public abstract class RpgSystemCommand extends Command
     protected abstract Logger getLogger();
     
     
-    protected abstract ReturnMsg safeCommand(String cmdName, String cmdParams);
+    protected abstract Optional<GenericRoll> safeCommand(String cmdParams);
     
     
     @Override
@@ -55,9 +58,29 @@ public abstract class RpgSystemCommand extends Command
         if (prefixMatcher.matches())
         {
             getLogger().debug(cmdLine);
-            retVal = safeCommand(prefixMatcher.group(CMD_NAME), prefixMatcher.group(CMD_PARAMS));
+            String cmdParams = prefixMatcher.group(CMD_PARAMS);
+            Optional<GenericRoll> parsedRoll;
+            if (cmdParams == null || cmdParams.isEmpty())
+            {
+                parsedRoll = Optional.empty();
+            }
+            else
+            {
+                parsedRoll = safeCommand(cmdParams);
+            }
+            if (parsedRoll.isPresent())
+            {
+                GenericRoll roll = parsedRoll.get();
+                retVal = roll.getResult().getMessage();
+            }
+            else
+            {
+                retVal = getHelpMessage(prefixMatcher.group(CMD_NAME));
+            }
         }
         return retVal;
     }
+    
+    public abstract ReturnMsg getHelpMessage(String cmdName);
     
 }
