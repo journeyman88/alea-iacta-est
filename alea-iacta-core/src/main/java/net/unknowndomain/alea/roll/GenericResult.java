@@ -17,6 +17,7 @@ package net.unknowndomain.alea.roll;
 
 import net.unknowndomain.alea.messages.MsgBuilder;
 import net.unknowndomain.alea.messages.ReturnMsg;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  *
@@ -34,6 +35,11 @@ public abstract class GenericResult
     }
     
     protected abstract void formatResults(MsgBuilder messageBuilder, boolean verbose, int indentValue);
+    
+    protected String getIndent(int indentValue)
+    {
+        return StringUtils.leftPad("", indentValue);
+    }
 
     public boolean isVerbose()
     {
