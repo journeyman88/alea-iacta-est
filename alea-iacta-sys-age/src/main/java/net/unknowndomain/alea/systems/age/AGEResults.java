@@ -58,25 +58,23 @@ public class AGEResults extends GenericResult
         }
         if (verbose)
         {
-            if (!getResults().isEmpty())
+            messageBuilder.append("Roll ID: ").append(getUuid()).appendNewLine();
+            messageBuilder.append("Results: ").append(" [ ");
+            boolean first = true;
+            for (Integer t : getResults())
             {
-                messageBuilder.append("Results: ").append(" [ ");
-                boolean first = true;
-                for (Integer t : getResults())
+                if (first)
                 {
-                    if (first)
-                    {
-                        messageBuilder.append(t, MsgStyle.BOLD);
-                        first = false;
-                    }
-                    else
-                    {
-                        messageBuilder.append(t);
-                    }
-                    messageBuilder.append(" ");
+                    messageBuilder.append(t, MsgStyle.BOLD);
+                    first = false;
                 }
-                messageBuilder.append("]").appendNewLine();
+                else
+                {
+                    messageBuilder.append(t);
+                }
+                messageBuilder.append(" ");
             }
+            messageBuilder.append("]").appendNewLine();
         }
     }
 
