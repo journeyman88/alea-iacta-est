@@ -43,6 +43,7 @@ For system-specific syntax and usage you can run the `!alea <system> -h` command
 
 - Blacksad RPG : roll modifiers
 - FATE Core : base roll
+- Not The End : base mechanic
 - Walkthrough : base roll
 
 ## Run-It-Yourself
