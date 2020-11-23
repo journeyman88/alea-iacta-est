@@ -50,7 +50,7 @@ public class Expression
         while(dropMatch.find())
         {
             String keepEx = dropMatch.group("drop");
-            parts.add(new KeepPart(keepEx));
+            parts.add(new DropPart(keepEx));
         }
         modExpr = dropMatch.replaceAll("");
         Matcher upprMatch = UPPER_PATTERN.matcher(modExpr);
