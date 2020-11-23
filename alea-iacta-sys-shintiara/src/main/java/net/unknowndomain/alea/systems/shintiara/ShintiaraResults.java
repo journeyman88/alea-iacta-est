@@ -114,6 +114,7 @@ public class ShintiaraResults extends GenericResult
         messageBuilder.appendNewLine();
         if (verbose)
         {
+            messageBuilder.append("Roll ID: ").append(getUuid()).appendNewLine();
             messageBuilder.append("Result: ").append(getResult());
             if (showAsset)
             {
