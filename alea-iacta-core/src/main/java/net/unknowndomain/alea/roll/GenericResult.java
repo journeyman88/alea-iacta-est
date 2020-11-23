@@ -15,6 +15,7 @@
  */
 package net.unknowndomain.alea.roll;
 
+import java.util.UUID;
 import net.unknowndomain.alea.messages.MsgBuilder;
 import net.unknowndomain.alea.messages.ReturnMsg;
 import org.apache.commons.lang3.StringUtils;
@@ -26,6 +27,7 @@ import org.apache.commons.lang3.StringUtils;
 public abstract class GenericResult
 {
     private boolean verbose;
+    private final String uuid = UUID.randomUUID().toString();
     
     public ReturnMsg getMessage()
     {
@@ -49,5 +51,10 @@ public abstract class GenericResult
     public void setVerbose(boolean verbose)
     {
         this.verbose = verbose;
+    }
+
+    public String getUuid()
+    {
+        return uuid;
     }
 }
