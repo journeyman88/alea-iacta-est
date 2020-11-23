@@ -43,7 +43,6 @@ For system-specific syntax and usage you can run the `!alea <system> -h` command
 
 - Blacksad RPG : roll modifiers
 - FATE Core : base roll
-- Vampire the Masquerade 5th Edition: separate reroll to use user-cache-role mechanism
 - Walkthrough : base roll
 
 ## Run-It-Yourself
