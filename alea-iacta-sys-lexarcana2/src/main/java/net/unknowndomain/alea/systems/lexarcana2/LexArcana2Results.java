@@ -59,6 +59,7 @@ public class LexArcana2Results extends GenericResult
         messageBuilder.append("Total: ").append(getTotal()).appendNewLine();
         if (verbose)
         {
+            messageBuilder.append("Roll ID: ").append(getUuid()).appendNewLine();
             messageBuilder.append("Results: ").append(" [ ");
             int round = 1;
             for (Integer t : getResults())
