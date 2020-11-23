@@ -65,6 +65,7 @@ public class ExpressionCommand extends Command
         sb.append(" * NdX: roll N dice with X faces and sum them (es: 2d12)").append("\n");
         sb.append(" * N: add an Integer number (es: +5, -3)").append("\n");
         sb.append(" * NdXkY: roll N dice with X faces, sum the Y with the highest face value (es: 10d6k8)").append("\n");
+        sb.append(" * NdXlY: roll N dice with X faces, sum the Y with the lowest face value (es: 3d12l2)").append("\n");
         sb.append(" * NdX/Y: roll N dice with X faces, count the ones with a face value higher or equal than Y (es: 10d10/7)").append("\n");
         sb.append(" * NdX\\Y: roll N dice with X faces, count the ones with a face value lower or equal than Y (es: 10d10\\4)").append("\n");
         sb.append("These operation can be compounded in any way: 4d4/3  + 10d6k5 - 1d8 - 1d12\\5 +7").append("\n");

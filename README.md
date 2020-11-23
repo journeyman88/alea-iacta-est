@@ -11,7 +11,8 @@ The expression engine is built to be used as a simple dice roller and can be inv
 It can solve compounded expression in algebrical sum form, and can interpret - beside simple integer constants - the following notations:
 
 - **Simple Dice notation** *NdX*, for example 2d8 - which means roll two dice each with eight faces.
-- **Roll'n'Keep notation** *NdXkY*, for example 10d6k5 - which means roll ten dice each with six faces, then sum together the 5 highest values
+- **Roll'n'Keep (upper) notation** *NdXkY*, for example 10d6k5 - which means roll ten dice each with six faces, then sum together the 5 highest values
+- **Roll'n'Keep (lower) notation** *NdXlY*, for example 10d6l5 - which means roll ten dice each with six faces, then sum together the 5 lowest values
 - **Roll Above notation** *NdX/Y*, for example 5d10/7 - which means roll five dice each with ten faces, then count those with a value higher than, or equal to seven
 - **Roll Below notation** *NdX\Y*, for example 3d20\13 - which means roll three dice each with twenty faces, then count those with a value lesser than, or equal to thirteen
 
@@ -40,7 +41,6 @@ For system-specific syntax and usage you can run the `!alea <system> -h` command
 ### Next implementations in line:
 
 - Core: check possibility for caching results per user, to allow easy reroll for systems that need that (and to allow implementing new systems where ther's a reroll-like core mechanism)
-- Expression Engine: implement the Roll'n'Drop ( NdXlY ) - roll N dice, keep the lowest Y
 - AGE system : base roll
 - Blacksad RPG : roll modifiers
 - FATE Core : base roll

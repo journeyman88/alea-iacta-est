@@ -27,6 +27,7 @@ import java.util.regex.Pattern;
 public class Expression
 {
     private static final Pattern KEEP_PATTERN = Pattern.compile("(?<keep>(\\+|-?)\\d+d\\d+k\\d+)");
+    private static final Pattern DROP_PATTERN = Pattern.compile("(?<drop>(\\+|-?)\\d+d\\d+l\\d+)");
     private static final Pattern UPPER_PATTERN = Pattern.compile("(?<upper>(\\+|-?)\\d+d\\d+\\/\\d+)");
     private static final Pattern LOWER_PATTERN = Pattern.compile("(?<lower>(\\+|-?)\\d+d\\d+\\\\\\d+)");
     private static final Pattern DICE_PATTERN = Pattern.compile("(?<dice>(\\+|-?)\\d+d\\d+)");
@@ -45,6 +46,13 @@ public class Expression
             parts.add(new KeepPart(keepEx));
         }
         modExpr = keepMatch.replaceAll("");
+        Matcher dropMatch = DROP_PATTERN.matcher(modExpr);
+        while(dropMatch.find())
+        {
+            String keepEx = dropMatch.group("drop");
+            parts.add(new KeepPart(keepEx));
+        }
+        modExpr = dropMatch.replaceAll("");
         Matcher upprMatch = UPPER_PATTERN.matcher(modExpr);
         while(upprMatch.find())
         {
