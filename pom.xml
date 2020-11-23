@@ -147,6 +147,7 @@
         <module>alea-iacta-sys-lexarcana2</module>
         <module>alea-iacta-sys-blacksad</module>
         <module>alea-iacta-sys-shintiara</module>
+        <module>alea-iacta-sys-age</module>
     </modules>
     <dependencyManagement>
         <dependencies>

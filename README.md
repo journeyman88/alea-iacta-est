@@ -26,6 +26,7 @@ At the moment of writing the systems supported are the following:
 | System  | Shortcut  | Command  |
 | :------------ | :------------ | :------------ |
 | 7th Sea 2nd Edition  | `!alea 7s2`  | `!alea 7th-sea-2nd`  |
+| AGE System  | `!alea age`  | `!alea age-system`  |
 | Blacksad RPG  | `!alea sad`  | `!alea blacksad`  |
 | Brass Age  | `!alea ba1`  | `!alea brass-age`  |
 | Lex Arcana 2nd Edition  | `!alea lex`  | `!alea lex-arcana-2nd`  |
@@ -41,7 +42,6 @@ For system-specific syntax and usage you can run the `!alea <system> -h` command
 ### Next implementations in line:
 
 - Core: check possibility for caching results per user, to allow easy reroll for systems that need that (and to allow implementing new systems where ther's a reroll-like core mechanism)
-- AGE system : base roll
 - Blacksad RPG : roll modifiers
 - FATE Core : base roll
 - Walkthrough : base roll
