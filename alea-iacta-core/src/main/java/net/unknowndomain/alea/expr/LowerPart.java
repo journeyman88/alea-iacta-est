@@ -17,8 +17,6 @@ package net.unknowndomain.alea.expr;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import net.unknowndomain.alea.dice.DiceN;
-import net.unknowndomain.alea.pools.DicePool;
 
 /**
  *

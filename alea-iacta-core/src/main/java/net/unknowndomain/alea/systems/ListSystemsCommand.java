@@ -17,6 +17,7 @@ package net.unknowndomain.alea.systems;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import net.unknowndomain.alea.command.Command;
 import net.unknowndomain.alea.messages.MsgBuilder;
 import net.unknowndomain.alea.messages.MsgStyle;
@@ -37,7 +38,7 @@ public class ListSystemsCommand extends Command
     }
 
     @Override
-    public ReturnMsg execCommand(String cmdLine)
+    public ReturnMsg execCommand(String cmdLine, Optional<Long> callerId)
     {
         MsgBuilder output = new MsgBuilder();
         List<RpgSystemDescriptor> desc = new ArrayList<>();

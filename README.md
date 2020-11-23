@@ -41,9 +41,9 @@ For system-specific syntax and usage you can run the `!alea <system> -h` command
 
 ### Next implementations in line:
 
-- Core: check possibility for caching results per user, to allow easy reroll for systems that need that (and to allow implementing new systems where ther's a reroll-like core mechanism)
 - Blacksad RPG : roll modifiers
 - FATE Core : base roll
+- Vampire the Masquerade 5th Edition: separate reroll to use user-cache-role mechanism
 - Walkthrough : base roll
 
 ## Run-It-Yourself

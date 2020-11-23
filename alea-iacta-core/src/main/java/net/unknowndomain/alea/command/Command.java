@@ -15,6 +15,7 @@
  */
 package net.unknowndomain.alea.command;
 
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import net.unknowndomain.alea.messages.ReturnMsg;
@@ -39,5 +40,5 @@ public abstract class Command
         Matcher matcher = PREFIX.matcher(cmdLine);
         return matcher.matches();
     }
-    public abstract ReturnMsg execCommand(String cmdLine);
+    public abstract ReturnMsg execCommand(String cmdLine, Optional<Long> callerId);
 }

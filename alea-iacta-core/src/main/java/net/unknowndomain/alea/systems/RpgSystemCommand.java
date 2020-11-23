@@ -17,12 +17,16 @@ package net.unknowndomain.alea.systems;
 
 import java.util.Optional;
 import java.util.ServiceLoader;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import net.unknowndomain.alea.command.Command;
-import net.unknowndomain.alea.command.HelpWrapper;
 import net.unknowndomain.alea.messages.MsgBuilder;
 import net.unknowndomain.alea.messages.ReturnMsg;
+import net.unknowndomain.alea.roll.GenericResult;
 import net.unknowndomain.alea.roll.GenericRoll;
+import net.unknowndomain.alea.roll.StatefulRoll;
+import org.cache2k.Cache;
+import org.cache2k.Cache2kBuilder;
 import org.slf4j.Logger;
 
 /**
@@ -33,6 +37,10 @@ public abstract class RpgSystemCommand extends Command
 {
     
     public static final ServiceLoader<RpgSystemCommand> LOADER = ServiceLoader.load(RpgSystemCommand.class);
+    
+    private static final Cache<Long, GenericResult> RESULT_CACHE = new Cache2kBuilder<Long, GenericResult>() {}
+            .expireAfterWrite(2, TimeUnit.MINUTES)
+            .build();
     
     
     @Override
@@ -50,7 +58,7 @@ public abstract class RpgSystemCommand extends Command
     
     
     @Override
-    public ReturnMsg execCommand(String cmdLine)
+    public ReturnMsg execCommand(String cmdLine, Optional<Long> callerId)
     {
         MsgBuilder errorBuilder = new MsgBuilder();
         ReturnMsg retVal = errorBuilder.append("Unexpected Error").build();
@@ -71,7 +79,31 @@ public abstract class RpgSystemCommand extends Command
             if (parsedRoll.isPresent())
             {
                 GenericRoll roll = parsedRoll.get();
-                retVal = roll.getResult().getMessage();
+                GenericResult result = null;
+                if (callerId.isPresent())
+                {
+                    Long id = callerId.get();
+                    if (RESULT_CACHE.containsKey(id))
+                    {
+                        result = RESULT_CACHE.peek(id);
+                    }
+                }
+                if ((roll instanceof StatefulRoll) && (result != null))
+                {
+                    StatefulRoll stateFul = (StatefulRoll) roll;
+                    boolean chkLoad = stateFul.loadState(result);
+                    if (!chkLoad)
+                    {
+                        return getHelpMessage(prefixMatcher.group(CMD_NAME));
+                    }
+                }
+                result = roll.getResult();
+                if (callerId.isPresent())
+                {
+                    Long id = callerId.get();
+                    RESULT_CACHE.put(id, result);
+                }
+                retVal = result.getMessage();
             }
             else
             {
