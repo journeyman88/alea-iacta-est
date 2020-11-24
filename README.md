@@ -30,6 +30,7 @@ At the moment of writing the systems supported are the following:
 | Blacksad RPG  | `!alea sad`  | `!alea blacksad`  |
 | Brass Age  | `!alea ba1`  | `!alea brass-age`  |
 | Lex Arcana 2nd Edition  | `!alea lex`  | `!alea lex-arcana-2nd`  |
+| Not The End  | `!alea nte`  | `!alea not-the-end`  |
 | Project H.O.P.E. 2nd Edition  | `!alea ph2`  | `!alea project-hope-2nd`  |
 | Shadowrun 5th Edition  | `!alea sr5`  | `!alea shadowrun-5th`  |
 | Shintiara RPG  | `!alea shn`  | `!alea shintiara`  |
@@ -43,7 +44,6 @@ For system-specific syntax and usage you can run the `!alea <system> -h` command
 
 - Blacksad RPG : roll modifiers
 - FATE Core : base roll
-- Not The End : base mechanic
 - Walkthrough : base roll
 
 ## Run-It-Yourself
