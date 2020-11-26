@@ -29,11 +29,12 @@ At the moment of writing the systems supported are the following:
 | AGE System  | `!alea age`  | `!alea age-system`  |
 | Blacksad RPG  | `!alea sad`  | `!alea blacksad`  |
 | Brass Age  | `!alea ba1`  | `!alea brass-age`  |
+| Klothos (Thread System)  | `!alea kts`  | `!alea klothos`  |
 | Lex Arcana 2nd Edition  | `!alea lex`  | `!alea lex-arcana-2nd`  |
 | Not The End  | `!alea nte`  | `!alea not-the-end`  |
 | Project H.O.P.E. 2nd Edition  | `!alea ph2`  | `!alea project-hope-2nd`  |
 | Shadowrun 5th Edition  | `!alea sr5`  | `!alea shadowrun-5th`  |
-| Shintiara RPG  | `!alea shn`  | `!alea shintiara`  |
+| Shintiara RPG (Modern d100)  | `!alea shn`  | `!alea shintiara`  |
 | The Dark Eye 5th Edition  | `!alea da5`  | `!alea the-dark-eye-5th`  |
 | Vampire the Masquerade 5th Edition  | `!alea vt5`  | `!alea vampire-5th`  |
 
