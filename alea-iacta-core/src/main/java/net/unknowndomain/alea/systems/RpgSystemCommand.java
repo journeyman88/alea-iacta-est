@@ -44,7 +44,7 @@ public abstract class RpgSystemCommand extends Command
     
     
     @Override
-    protected String getCommandRegex()
+    public String getCommandRegex()
     {
         return getCommandDesc().getShortcut() + "|" + getCommandDesc().getCommand();
     }

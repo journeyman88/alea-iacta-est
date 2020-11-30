@@ -16,12 +16,19 @@
 package net.unknowndomain.alea.roll;
 
 /**
- *
+ * This interface represents a roll that is state dependent, as such the state
+ * is loadable from the previous results.
  * @author journeyman
  */
 public interface StatefulRoll extends GenericRoll
 {
 
+    /**
+     * Loads the state from a previous result
+     * 
+     * @param state the previous result
+     * @return true if loading was successful
+     */
     boolean loadState(GenericResult state);
     
 }
