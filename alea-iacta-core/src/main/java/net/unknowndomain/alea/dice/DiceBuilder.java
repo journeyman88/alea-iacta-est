@@ -31,6 +31,7 @@ public class DiceBuilder
     
     static {
         REGISTRY = new HashMap<>();
+        REGISTRY.put("dF"  , DF.INSTANCE);
         REGISTRY.put("d3"  , D3.INSTANCE);
         REGISTRY.put("d4"  , D4.INSTANCE);
         REGISTRY.put("d5"  , D5.INSTANCE);

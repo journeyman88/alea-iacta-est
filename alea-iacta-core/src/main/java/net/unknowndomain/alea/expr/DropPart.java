@@ -26,7 +26,7 @@ import java.util.regex.Pattern;
 public class DropPart extends DicePart
 {
     
-    private static final Pattern PATTERN = Pattern.compile("^(.*)l(?<drop>\\d+)$");
+    private static final Pattern PATTERN = Pattern.compile("^(.*)(l|L)(?<drop>\\d+)$");
     private final int maxDice;
 
     public DropPart(String exp)

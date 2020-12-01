@@ -27,7 +27,7 @@ import net.unknowndomain.alea.pools.DicePool;
  */
 public abstract class DicePart extends ExpPart
 {
-    private static final Pattern PATTERN = Pattern.compile("^(\\+|-?)(?<number>\\d+)(?<class>d\\d+)(.*)$");
+    private static final Pattern PATTERN = Pattern.compile("^(\\+|-?)(?<number>\\d+)(?<class>(d|D)(\\d+|F))(.*)$");
     protected final DicePool<DiceN> dicePool;
 
     public DicePart(String exp)
@@ -36,7 +36,12 @@ public abstract class DicePart extends ExpPart
         Matcher m = PATTERN.matcher(exp);
         m.find();
         Integer diceNumber = Integer.parseInt(m.group("number"));
-        DiceN dice = DiceBuilder.parseDice(m.group("class"));
+        String c = m.group("class");
+        if (c.startsWith("D"))
+        {
+            c = "d" + c.substring(1);
+        }
+        DiceN dice = DiceBuilder.parseDice(c);
         dicePool = new DicePool<>(dice, diceNumber);
     }
     

@@ -26,7 +26,7 @@ import java.util.regex.Pattern;
 public class KeepPart extends DicePart
 {
     
-    private static final Pattern PATTERN = Pattern.compile("^(.*)k(?<max>\\d+)$");
+    private static final Pattern PATTERN = Pattern.compile("^(.*)(k|K)(?<max>\\d+)$");
     private final int maxDice;
 
     public KeepPart(String exp)

@@ -15,10 +15,6 @@
  */
 package net.unknowndomain.alea.expr;
 
-import net.unknowndomain.alea.dice.DiceBuilder;
-import net.unknowndomain.alea.dice.DiceN;
-import net.unknowndomain.alea.pools.DicePool;
-
 /**
  *
  * @author journeyman

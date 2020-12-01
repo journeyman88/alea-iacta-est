@@ -26,18 +26,18 @@ import java.util.regex.Pattern;
  */
 public class Expression
 {
-    private static final Pattern KEEP_PATTERN = Pattern.compile("(?<keep>(\\+|-?)\\d+d\\d+k\\d+)");
-    private static final Pattern DROP_PATTERN = Pattern.compile("(?<drop>(\\+|-?)\\d+d\\d+l\\d+)");
-    private static final Pattern UPPER_PATTERN = Pattern.compile("(?<upper>(\\+|-?)\\d+d\\d+\\/\\d+)");
-    private static final Pattern LOWER_PATTERN = Pattern.compile("(?<lower>(\\+|-?)\\d+d\\d+\\\\\\d+)");
-    private static final Pattern DICE_PATTERN = Pattern.compile("(?<dice>(\\+|-?)\\d+d\\d+)");
+    private static final Pattern KEEP_PATTERN = Pattern.compile("(?<keep>(\\+|-?)\\d+(d|D)(\\d+|F)(k|K)\\d+)");
+    private static final Pattern DROP_PATTERN = Pattern.compile("(?<drop>(\\+|-?)\\d+(d|D)(\\d+|F)(l|L)\\d+)");
+    private static final Pattern UPPER_PATTERN = Pattern.compile("(?<upper>(\\+|-?)\\d+(d|D)(\\d+|F)\\/\\d+)");
+    private static final Pattern LOWER_PATTERN = Pattern.compile("(?<lower>(\\+|-?)\\d+(d|D)(\\d+|F)\\\\\\d+)");
+    private static final Pattern DICE_PATTERN = Pattern.compile("(?<dice>(\\+|-?)\\d+(d|D)(\\d+|F))");
     private static final Pattern MOD_PATTERN = Pattern.compile("(?<mod>(\\+|-?)\\d+)");
     
     private final List<ExpPart> parts = new ArrayList<>();
     
     public Expression(String input)
     {
-        String expr = input.replaceAll(" ", "").toLowerCase();
+        String expr = input.replaceAll(" ", "");
         String modExpr = expr;
         Matcher keepMatch = KEEP_PATTERN.matcher(modExpr);
         while(keepMatch.find())
