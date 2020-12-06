@@ -44,7 +44,7 @@ For system-specific syntax and usage you can run the `!alea <system> -h` command
 ### Next implementations in line:
 
 - Blacksad RPG : roll modifiers
-- FATE Core : base roll
+- Knight of the Round Academy : base roll
 - Walkthrough : base roll
 
 ## Run-It-Yourself
