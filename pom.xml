@@ -151,6 +151,7 @@
         <module>alea-iacta-sys-age</module>
         <module>alea-iacta-sys-nottheend</module>
         <module>alea-iacta-sys-klothos</module>
+        <module>alea-iacta-sys-walkthrough</module>
     </modules>
     <dependencyManagement>
         <dependencies>

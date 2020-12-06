@@ -37,6 +37,7 @@ At the moment of writing the systems supported are the following:
 | Shintiara RPG (Modern d100)  | `!alea shn`  | `!alea shintiara`  |
 | The Dark Eye 5th Edition  | `!alea da5`  | `!alea the-dark-eye-5th`  |
 | Vampire the Masquerade 5th Edition  | `!alea vt5`  | `!alea vampire-5th`  |
+| Walkthrough RPG  | `!alea wkt`  | `!alea walkthrough`  |
 
 For system-specific syntax and usage you can run the `!alea <system> -h` command or check in the github wiki for the system-specific page.
 
@@ -45,7 +46,6 @@ For system-specific syntax and usage you can run the `!alea <system> -h` command
 
 - Blacksad RPG : roll modifiers
 - Knight of the Round Academy : base roll
-- Walkthrough : base roll
 
 ## Run-It-Yourself
 Aside from the official instance, you can run yourself an instance of the bot, simply by building the code and run it with the command line argument `--discordToken <YOUR_TOKEN_HERE>`.
