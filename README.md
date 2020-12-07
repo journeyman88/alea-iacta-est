@@ -6,6 +6,8 @@ It can be added to your server using this link:
 https://discord.com/oauth2/authorize?client_id=777835776757989427&scope=bot&permissions=0
 
 The bot supports system specific rolls and also has an expression solver to work on more generic rolls.
+The bot will listen to messages prefixed by `!alea`, and can also be configured to listen on the supported system-specific `!bang`: for example `!7s2` is a shortcut for `!alea 7s2` or `!alea 7th-sea-2nd`. In the official instance this behaviour is enabled by default. 
+
 ## Expression Engine
 The expression engine is built to be used as a simple dice roller and can be invoked using the `!alea expr <expression>` command.
 It can solve compounded expression in algebrical sum form, and can interpret - beside simple integer constants - the following notations:
@@ -48,5 +50,6 @@ For system-specific syntax and usage you can run the `!alea <system> -h` command
 - Knight of the Round Academy : base roll
 
 ## Run-It-Yourself
-Aside from the official instance, you can run yourself an instance of the bot, simply by building the code and run it with the command line argument `--discordToken <YOUR_TOKEN_HERE>`.
+Aside from the official instance, you can run yourself an instance of the bot, simply by building the code and run it with the command line argument `--discordToken <YOUR_TOKEN_HERE>`, also if you want enable the system-specifics `!bang` you should also add the `--systemListener` parameter.
+
 You can also exclude systems that you're not interested into, simply by removing the appropriate jar from classpath before running it.
