@@ -21,24 +21,70 @@ import java.util.regex.Pattern;
 import net.unknowndomain.alea.messages.ReturnMsg;
 
 /**
- *
+ * The generic command base-class.
+ * This is the superclass of every command used in the system, both base commands
+ * and pluggable RPG-specific commands.
+ * 
  * @author journeyman
  */
 public abstract class Command
 {
-    
+    /**
+     * Helper String constant to access the command name.
+     */
     protected static final String CMD_NAME = "command";
+    
+    /**
+     * Helper String constant to access the command parameters.
+     */
     protected static final String CMD_PARAMS = "parameters";
+    
+    /**
+     * Helper String constant for the common 'help' parameter.
+     */
     protected static final String CMD_HELP = "help";
+    
+    /**
+     * Helper String constant for the common 'verbose' parameter.
+     */
     protected static final String CMD_VERBOSE = "verbose";
+    
+    /**
+     * The Pattern used to match the command.
+     * @see Pattern
+     */
     protected final Pattern PREFIX = Pattern.compile("^(?<command>" + getCommandRegex() + ")(( )(?<parameters>.*))?$");
     
+    /**
+     * Gets the regex that matches this command.
+     * 
+     * @return the command matching regex in String form.
+     */
     protected abstract String getCommandRegex();
     
+    /**
+     * Check if this system can interpret the given command-line.
+     * 
+     * @param cmdLine the input command line
+     * @return true if the command line patches the command.
+     */
     public boolean checkCommand(String cmdLine)
     {
         Matcher matcher = PREFIX.matcher(cmdLine);
         return matcher.matches();
     }
+    /**
+     * Exec this command.
+     * This method execute the command specified in the cmdLine parameter, and 
+     * builds a wrapped message with the results.
+     * Is best to call the checkCommand method beforehand, to see if the commandline
+     * can be interpreted by the implementation.
+     * 
+     * @param cmdLine The commandline which is interpreted by the implementation
+     * @param callerId An Optional that may contain a caller id number, used for rerolls.
+     * @return The return message wrapper which contains the command results.
+     * @see ReturnMsg
+     * @see Optional
+     */
     public abstract ReturnMsg execCommand(String cmdLine, Optional<Long> callerId);
 }

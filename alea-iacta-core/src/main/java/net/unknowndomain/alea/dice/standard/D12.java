@@ -23,6 +23,9 @@ import net.unknowndomain.alea.dice.DiceN;
  */
 public class D12 extends DiceN
 {
+    /**
+     * The instance of this dice.
+     */
     public static final D12 INSTANCE = new D12();
     
     private D12()

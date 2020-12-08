@@ -21,7 +21,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
+ * This is to be used as the entry-point to build a custom DiceN.
+ * 
+ * Since the system has a set of common and less common polyhedral dice preset,
+ * this builder can - if a match is found - return a known instance instead of a 
+ * custom anonymous class for optimization reason.
+ * 
  * @author journeyman
  */
 public class DiceBuilder
@@ -54,6 +59,12 @@ public class DiceBuilder
         REGISTRY.put("d100", D100.INSTANCE);
     }
     
+    /**
+     * Builds a DiceN instance given the diceClass.
+     * 
+     * @param dX the diceClass in standard dice annotation.
+     * @return the DiceN instance
+     */
     public static final DiceN parseDice(String dX)
     {
         if (REGISTRY.containsKey(dX))
@@ -77,6 +88,14 @@ public class DiceBuilder
         };
     }
     
+    /**
+     * Builds a DiceN instance given the maximum Value.
+     * 
+     * This builds a DiceN with minimum value of 1 and maximum value of X.
+     * 
+     * @param X the DiceN maximum value
+     * @return the DiceN instance
+     */
     public static final DiceN parseDice(Integer X)
     {
         String dX = "d" + X;

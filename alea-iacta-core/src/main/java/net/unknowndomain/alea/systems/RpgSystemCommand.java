@@ -30,12 +30,16 @@ import org.cache2k.Cache2kBuilder;
 import org.slf4j.Logger;
 
 /**
- *
+ * This is both the service entry-point for the pluggable RPGs and the basic system command.
+ * This class w
  * @author journeyman
+ * @see Command
  */
 public abstract class RpgSystemCommand extends Command
 {
-    
+    /**
+     * This is the service loader used to access the pluggable-RPGs specific implementations.
+     */
     public static final ServiceLoader<RpgSystemCommand> LOADER = ServiceLoader.load(RpgSystemCommand.class);
     
     private static final Cache<Long, GenericResult> RESULT_CACHE = new Cache2kBuilder<Long, GenericResult>() {}
@@ -49,11 +53,34 @@ public abstract class RpgSystemCommand extends Command
         return getCommandDesc().getShortcut() + "|" + getCommandDesc().getCommand();
     }
     
+    /**
+     * Gets the descriptor of this RPG system.
+     * 
+     * @return A descriptor of this system.
+     * @see RpgSystemDescriptor
+     */
     public abstract RpgSystemDescriptor getCommandDesc();
     
+    /**
+     * Gets the implementation Logger to use in the shared methods.
+     * 
+     * @return returns the implementation logger.
+     * @see Logger
+     */
     protected abstract Logger getLogger();
     
-    
+    /**
+     * Execute this command and builds the relative roll.
+     * 
+     * This method uses the parameters to build a system-specific roll wrapped
+     * in a null-safe Optional.
+     * The command is then invoked as part of the execCommand method.
+     * 
+     * @param cmdParams the command parameters in a single string
+     * @return An Optional containing the roll build by this command
+     * @see GenericRoll
+     * @see Optional
+     */
     protected abstract Optional<GenericRoll> safeCommand(String cmdParams);
     
     
@@ -113,6 +140,13 @@ public abstract class RpgSystemCommand extends Command
         return retVal;
     }
     
+    /**
+     * This method returns a formatted help for this command.
+     * 
+     * @param cmdName the command-name used to invoke this instance
+     * @return A formatted help message for the specific command.
+     * @see ReturnMsg
+     */
     public abstract ReturnMsg getHelpMessage(String cmdName);
     
 }

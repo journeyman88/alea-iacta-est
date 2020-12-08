@@ -16,10 +16,19 @@
 package net.unknowndomain.alea.dice;
 
 /**
- *
+ * This is the interface to implement to build a valid dice for the system.
+ * 
+ * This interface uses the Java Generic system to account for special dice, that
+ * can return custom values, like for example: Strings or Images.
+ * 
  * @author journeyman
+ * @param <T> The type of a single roll result.
  */
-public interface GenericDice
+public interface GenericDice<T>
 {
-    public int roll();
+    /**
+     * Rolls a single dice.
+     * @return the result of the roll.
+     */
+    public T roll();
 }

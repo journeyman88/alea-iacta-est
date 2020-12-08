@@ -24,6 +24,9 @@ import net.unknowndomain.alea.dice.DiceN;
  */
 public class DF extends DiceN
 {
+    /**
+     * The instance of this dice.
+     */
     public static final DF INSTANCE = new DF();
     
     private DF()
@@ -36,6 +39,15 @@ public class DF extends DiceN
         return -1;
     }
 
+    /**
+     * This method does not return the maximum value of the dF.
+     * 
+     * Due to how the DiceN superclass is implemented this method gets not the 
+     * maximum face value, as for other standard DiceN implementations, but the
+     * value necessary to obtain the correct range of values [-1, 0, 1].
+     * 
+     * @return the value to use as maximum to calculate the correct range.
+     */
     @Override
     public int getMaxResult()
     {

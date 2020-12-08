@@ -18,16 +18,28 @@ package net.unknowndomain.alea.dice;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- *
+ * This is the base class to implement numeric dice with ascending numbers.
+ * 
  * @author journeyman
  */
-public abstract class DiceN implements GenericDice
+public abstract class DiceN implements GenericDice<Integer>
 {
+    /**
+     * Gets the minimum result of this dice.
+     * 
+     * @return the minimum result of the dice.
+     */
     public abstract int getMinResult();
+    
+    /**
+     * Gets the maximum result of this dice.
+     * 
+     * @return the maximum result of the dice.
+     */
     public abstract int getMaxResult();
     
     @Override
-    public int roll()
+    public Integer roll()
     {
         int result = ThreadLocalRandom.current().nextInt(getMaxResult());
         result += getMinResult();

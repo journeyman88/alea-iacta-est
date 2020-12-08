@@ -15,57 +15,32 @@
  */
 package net.unknowndomain.alea.pools;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 import net.unknowndomain.alea.dice.GenericDice;
 
 /**
- *
+ * An Integer based DicePool implementation.
+ * 
+ * This class has been created as both a compatibility layer for already written 
+ * systems, and as a shortcut for the more complete GenericDicePool.
+ * 
  * @author journeyman
- * @param <T>
+ * @param <T> an integer-based GenericDice class
+ * @see GenericDice
+ * @see GenericDicePool
  */
-public class DicePool<T extends GenericDice>
+public class DicePool<T extends GenericDice<Integer>> extends GenericDicePool<T, Integer>
 {
-    private final T diceClass;
-    private final Integer numberOfDice;
-    private final Set<Integer> explodingValues;
     
     public DicePool(T diceClass, int numberOfDice, Integer ... explodingValues)
     {
-        this(diceClass, numberOfDice, Arrays.asList(explodingValues));
+        super(diceClass, numberOfDice, Arrays.asList(explodingValues));
     }
     
     public DicePool(T diceClass, int numberOfDice, Collection<Integer> explodingValues)
     {
-        this.diceClass = diceClass;
-        this.numberOfDice = numberOfDice;
-        Set<Integer> tmpSet = new HashSet<>();
-        if ((explodingValues != null) && !explodingValues.isEmpty())
-        {
-            tmpSet.addAll(explodingValues);
-        }
-        this.explodingValues = Collections.unmodifiableSet(tmpSet);
+        super(diceClass, numberOfDice, explodingValues);
     }
     
-    public List<Integer> getResults()
-    {
-        List<Integer> results = new ArrayList<>(numberOfDice);
-        int idx = 0;
-        while(idx < numberOfDice)
-        {
-            idx++;
-            int result = diceClass.roll();
-            if (explodingValues.contains(result))
-            {
-                idx--;
-            }
-            results.add(result);
-        }
-        return results;
-    }
 }

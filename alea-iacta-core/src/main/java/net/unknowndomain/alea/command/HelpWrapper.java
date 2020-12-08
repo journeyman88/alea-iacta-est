@@ -24,11 +24,22 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 
 /**
- *
+ * Thiss class is to build a help for a command and wrap it in a message.
+ * 
  * @author journeyman
  */
 public class HelpWrapper
 {
+    /**
+     * Builds a Help message.
+     * 
+     * @param commandName the command name used to format the help.
+     * @param opts the command line options used to build the help.
+     * @param autoUsage true if this has to build automatically a usage line.
+     * @return the help contained in a message wrapper.
+     * @see ReturnMsg
+     * @see Options
+     */
     public static ReturnMsg printHelp(String commandName, Options opts, boolean autoUsage)
     {
         MsgBuilder mb = new MsgBuilder();

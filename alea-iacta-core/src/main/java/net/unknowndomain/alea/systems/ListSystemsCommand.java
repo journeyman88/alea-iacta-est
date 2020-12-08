@@ -25,7 +25,8 @@ import net.unknowndomain.alea.messages.ReturnMsg;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- *
+ * This command is used to list all available pluggable RPGs.
+ * 
  * @author journeyman
  */
 public class ListSystemsCommand extends Command
