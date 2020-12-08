@@ -20,13 +20,25 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- *
+ * This is a container class for the return message.
+ * 
+ * This is an unmodifiable class that should only be built using MsgBulder.
+ * 
  * @author journeyman
+ * @see MsgBuilder
  */
 public class ReturnMsg
 {
     private final List<MsgPart> parts;
     
+    /**
+     * This method builds the final message.
+     * 
+     * To ensure that the part list is unmodifiable, each element is copied into 
+     * a new list that is then accessed only by an unmodifiable decorator.
+     * 
+     * @param parts the parts that form the message.
+     */
     protected ReturnMsg(List<MsgPart> parts)
     {
         List<MsgPart> tmp = new ArrayList<>(parts.size());
@@ -34,6 +46,14 @@ public class ReturnMsg
         this.parts = Collections.unmodifiableList(tmp);
     }
     
+    /**
+     * Gets the parts of the message.
+     * 
+     * This method is used by the bot implementation to build the message from 
+     * the different parts, applying the relative syles for each part.
+     * 
+     * @return the unmodifiable list of parts that form the message.
+     */
     public List<MsgPart> getParts()
     {
         return parts;

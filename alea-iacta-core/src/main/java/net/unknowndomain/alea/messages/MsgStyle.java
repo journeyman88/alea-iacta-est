@@ -21,10 +21,28 @@ package net.unknowndomain.alea.messages;
  */
 public enum MsgStyle
 {
+    /**
+     * Renders the text as Bold.
+     */
     BOLD,
+    /**
+     * Renders the text as Italic.
+     */
     ITALIC,
+    /**
+     * Renders the text as Underline.
+     */
     UNDERLINE,
-    STRIKEOUT,
+    /**
+     * Renders the text as Strikethrough.
+     */
+    STRIKETHRU,
+    /**
+     * Renders the text as a Code block.
+     */
     CODE,
+    /**
+     * Marks the text as a Spoiler.
+     */
     SPOILER
 }

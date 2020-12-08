@@ -18,7 +18,10 @@ package net.unknowndomain.alea.messages;
 import java.io.Serializable;
 
 /**
- *
+ * An interface to unify the management of the various types of parts.
+ * 
+ * Each part should only contain final and unmodifiable fields.
+ * 
  * @author journeyman
  */
 public interface MsgPart extends Serializable

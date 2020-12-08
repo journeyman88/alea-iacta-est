@@ -21,7 +21,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- *
+ * A styled text container MsgPart.
+ * 
  * @author journeyman
  */
 public class MsgTextPart implements MsgPart
@@ -29,6 +30,12 @@ public class MsgTextPart implements MsgPart
     private final String msgText;
     private final Set<MsgStyle> msgStyle;
     
+    /**
+     * Builds the part using text and styles.
+     * 
+     * @param msgText the text of the message
+     * @param styles the styles to apply to the text.
+     */
     protected MsgTextPart(String msgText, MsgStyle ... styles)
     {
         this.msgText = msgText;
@@ -40,11 +47,21 @@ public class MsgTextPart implements MsgPart
         this.msgStyle = Collections.unmodifiableSet(tmp);
     }
 
+    /**
+     * Gets the text contained in this part.
+     * 
+     * @return text
+     */
     public String getMsgText()
     {
         return msgText;
     }
 
+    /**
+     * Gets the style to apply to this part.
+     * 
+     * @return style-set
+     */
     public Set<MsgStyle> getMsgStyle()
     {
         return msgStyle;

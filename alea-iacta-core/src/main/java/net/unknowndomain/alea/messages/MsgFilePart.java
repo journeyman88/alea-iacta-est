@@ -20,7 +20,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 /**
- *
+ * An MsgPart created to wrap a file.
+ * 
  * @author journeyman
  */
 public class MsgFilePart implements MsgPart
@@ -28,23 +29,45 @@ public class MsgFilePart implements MsgPart
     private final byte [] data;
     private final String fileName;
     
+    /**
+     * Builds the part using a filename and the content.
+     * 
+     * @param data content
+     * @param fileName filename
+     */
     protected MsgFilePart(byte [] data, String fileName)
     {
         this.data = data;
         this.fileName = fileName;
     }
-    
+    /**
+     * Builds the part using a Path.
+     * 
+     * @param file the file to wrap
+     * @throws IOException if the file is not readable.
+     * @see Path
+     */
     protected MsgFilePart(Path file) throws IOException
     {
         this.data = Files.readAllBytes(file);
         this.fileName = file.toFile().getName();
     }
 
+    /**
+     * Gets the content of the file contained in this part.
+     * 
+     * @return binary data
+     */
     public byte[] getData()
     {
         return data;
     }
 
+    /**
+     * Gets the name of the file contained in this part.
+     * 
+     * @return filename
+     */
     public String getFileName()
     {
         return fileName;
