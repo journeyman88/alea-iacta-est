@@ -15,29 +15,29 @@
  */
 package net.unknowndomain.alea.messages;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.io.IOException;
+import java.net.URL;
 
 /**
  *
  * @author journeyman
  */
-public class ReturnMsg
+public class MsgUrlPart implements MsgPart
 {
-    private final List<MsgPart> parts;
+    private final URL url;
     
-    protected ReturnMsg(List<MsgPart> parts)
+    protected MsgUrlPart(URL url)
     {
-        List<MsgPart> tmp = new ArrayList<>(parts.size());
-        tmp.addAll(parts);
-        this.parts = Collections.unmodifiableList(tmp);
+        this.url = url;
     }
     
-    public List<MsgPart> getParts()
+    protected MsgUrlPart(String url) throws IOException
     {
-        return parts;
+        this.url = new URL(url);
     }
-    
-    
+
+    public URL getUrl()
+    {
+        return url;
+    }
 }

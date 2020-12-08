@@ -15,29 +15,39 @@
  */
 package net.unknowndomain.alea.messages;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
  * @author journeyman
  */
-public class ReturnMsg
+public class MsgTextPart implements MsgPart
 {
-    private final List<MsgPart> parts;
+    private final String msgText;
+    private final Set<MsgStyle> msgStyle;
     
-    protected ReturnMsg(List<MsgPart> parts)
+    protected MsgTextPart(String msgText, MsgStyle ... styles)
     {
-        List<MsgPart> tmp = new ArrayList<>(parts.size());
-        tmp.addAll(parts);
-        this.parts = Collections.unmodifiableList(tmp);
+        this.msgText = msgText;
+        Set<MsgStyle> tmp = new HashSet<>();
+        if (styles != null)
+        {
+            tmp.addAll(Arrays.asList(styles));
+        }
+        this.msgStyle = Collections.unmodifiableSet(tmp);
     }
-    
-    public List<MsgPart> getParts()
+
+    public String getMsgText()
     {
-        return parts;
+        return msgText;
     }
-    
+
+    public Set<MsgStyle> getMsgStyle()
+    {
+        return msgStyle;
+    }
     
 }

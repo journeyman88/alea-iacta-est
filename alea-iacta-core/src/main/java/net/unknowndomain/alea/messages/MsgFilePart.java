@@ -15,29 +15,39 @@
  */
 package net.unknowndomain.alea.messages;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 /**
  *
  * @author journeyman
  */
-public class ReturnMsg
+public class MsgFilePart implements MsgPart
 {
-    private final List<MsgPart> parts;
+    private final byte [] data;
+    private final String fileName;
     
-    protected ReturnMsg(List<MsgPart> parts)
+    protected MsgFilePart(byte [] data, String fileName)
     {
-        List<MsgPart> tmp = new ArrayList<>(parts.size());
-        tmp.addAll(parts);
-        this.parts = Collections.unmodifiableList(tmp);
+        this.data = data;
+        this.fileName = fileName;
     }
     
-    public List<MsgPart> getParts()
+    protected MsgFilePart(Path file) throws IOException
     {
-        return parts;
+        this.data = Files.readAllBytes(file);
+        this.fileName = file.toFile().getName();
     }
-    
+
+    public byte[] getData()
+    {
+        return data;
+    }
+
+    public String getFileName()
+    {
+        return fileName;
+    }
     
 }

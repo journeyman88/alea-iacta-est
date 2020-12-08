@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 journeyman.
+ * Copyright 2020 Marco Bignami.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,9 @@
  */
 package net.unknowndomain.alea.messages;
 
+import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,36 +28,6 @@ import java.util.List;
 public class MsgBuilder
 {
     private final List<MsgPart> parts = new ArrayList<>();
-    
-//    public MsgBuilder append(boolean bool, MsgStyle ... styles)
-//    {
-//        return append(String.valueOf(bool), styles);
-//    }
-//    
-//    public MsgBuilder append(double number, MsgStyle ... styles)
-//    {
-//        return append(String.valueOf(number), styles);
-//    }
-//    
-//    public MsgBuilder append(float number, MsgStyle ... styles)
-//    {
-//        return append(String.valueOf(number), styles);
-//    }
-//    
-//    public MsgBuilder append(int number, MsgStyle ... styles)
-//    {
-//        return append(String.valueOf(number), styles);
-//    }
-//    
-//    public MsgBuilder append(long number, MsgStyle ... styles)
-//    {
-//        return append(String.valueOf(number), styles);
-//    }
-//    
-//    public MsgBuilder append(short number, MsgStyle ... styles)
-//    {
-//        return append(String.valueOf(number), styles);
-//    }
     
     public MsgBuilder appendNewLine()
     {
@@ -68,7 +41,35 @@ public class MsgBuilder
     
     public MsgBuilder append(String msg, MsgStyle ... styles)
     {
-        MsgPart part = new MsgPart(msg, styles);
+        MsgTextPart part = new MsgTextPart(msg, styles);
+        parts.add(part);
+        return this;
+    }
+    
+    public MsgBuilder appendFile(byte [] data, String fileName)
+    {
+        MsgFilePart part = new MsgFilePart(data, fileName);
+        parts.add(part);
+        return this;
+    }
+    
+    public MsgBuilder appendUrl(URL url)
+    {
+        MsgUrlPart part = new MsgUrlPart(url);
+        parts.add(part);
+        return this;
+    }
+    
+    public MsgBuilder appendFile(Path file) throws IOException
+    {
+        MsgFilePart part = new MsgFilePart(file);
+        parts.add(part);
+        return this;
+    }
+    
+    public MsgBuilder appendUrl(String url) throws IOException
+    {
+        MsgUrlPart part = new MsgUrlPart(url);
         parts.add(part);
         return this;
     }

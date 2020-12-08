@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 journeyman.
+ * Copyright 2020 Marco Bignami.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,39 +15,13 @@
  */
 package net.unknowndomain.alea.messages;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.io.Serializable;
 
 /**
  *
  * @author journeyman
  */
-public class MsgPart
+public interface MsgPart extends Serializable
 {
-    private final String msgText;
-    private final Set<MsgStyle> msgStyle;
-    
-    protected MsgPart(String msgText, MsgStyle ... styles)
-    {
-        this.msgText = msgText;
-        Set<MsgStyle> tmp = new HashSet<>();
-        if (styles != null)
-        {
-            tmp.addAll(Arrays.asList(styles));
-        }
-        this.msgStyle = Collections.unmodifiableSet(tmp);
-    }
-
-    public String getMsgText()
-    {
-        return msgText;
-    }
-
-    public Set<MsgStyle> getMsgStyle()
-    {
-        return msgStyle;
-    }
     
 }
