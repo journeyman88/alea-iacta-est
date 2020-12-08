@@ -21,7 +21,8 @@ import net.unknowndomain.alea.messages.ReturnMsg;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- *
+ * This is a common result base-class to be extended by system specific classes.
+ * 
  * @author journeyman
  */
 public abstract class GenericResult
@@ -29,6 +30,11 @@ public abstract class GenericResult
     private boolean verbose;
     private final String uuid = UUID.randomUUID().toString();
     
+    /**
+     * Builds a message from this result.
+     * 
+     * @return the message-wrapped formatted result.
+     */
     public ReturnMsg getMessage()
     {
         MsgBuilder msg = new MsgBuilder();
@@ -36,23 +42,55 @@ public abstract class GenericResult
         return msg.build();
     }
     
+    /**
+     * Formats this result and append it to the passed MsgBuilder.
+     * 
+     * This is the result-specific formatter method to be used to wrap the 
+     * results in a message. Is called by the getMessage method and can also
+     * be used to build a chain of results, in case of rerolls.
+     * 
+     * @param messageBuilder the message builder upon which append the formatted result.
+     * @param verbose true to activate the verbose modifier.
+     * @param indentValue a number of spaces to be used as indentation. 
+     * @see MsgBuilder
+     */
     protected abstract void formatResults(MsgBuilder messageBuilder, boolean verbose, int indentValue);
     
+    /**
+     * Builds the indentation prefix.
+     * 
+     * @param indentValue a number of spaces to be used as indentation.
+     * @return a string of whitepaces, indentValue long
+     */
     protected String getIndent(int indentValue)
     {
         return StringUtils.leftPad("", indentValue);
     }
 
+    /**
+     * Check if the 'verbose' modifier is set for the result.
+     * 
+     * @return true if the result formatting is setted as 'verbose'.
+     */
     public boolean isVerbose()
     {
         return verbose;
     }
 
+    /**
+     * Sets state of the 'verbose' modifier.
+     * @param verbose true to enable the 'verbose' modifier.
+     */
     public void setVerbose(boolean verbose)
     {
         this.verbose = verbose;
     }
 
+    /**
+     * Gets the roll unique identifier.
+     * @return the roll uuid in string format.
+     * @see UUID
+     */
     public String getUuid()
     {
         return uuid;

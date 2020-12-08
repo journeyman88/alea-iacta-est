@@ -16,12 +16,20 @@
 package net.unknowndomain.alea.roll;
 
 /**
- *
+ * This is the most basic roll interface.
+ * 
+ * The purpose of this is simply to have a common interface for all rolls and 
+ * to standardize the results format.
+ * 
  * @author journeyman
  */
 public interface GenericRoll
 {
-
+    /**
+     * Gets the roll result.
+     * 
+     * @return the result of the roll.
+     */
     GenericResult getResult();
     
 }
