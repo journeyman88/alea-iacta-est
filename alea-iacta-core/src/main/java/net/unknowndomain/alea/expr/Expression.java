@@ -87,14 +87,24 @@ public class Expression
         parts.add(part);
     }
     
-    public Integer getResult()
+    public String getExpression()
     {
-        int sum = 0;
+        StringBuilder sb = new StringBuilder();
         for (ExpPart p : parts)
         {
-            sum += p.getResult();
+            sb.append(p.getExpr());
         }
-        return sum;
+        return sb.toString();
+    }
+    
+    public List<ExpResult> getResults()
+    {
+        List<ExpResult> result = new ArrayList<>(parts.size());
+        for (ExpPart p : parts)
+        {
+            result.add(p.getResult());
+        }
+        return result;
     }
     
 }

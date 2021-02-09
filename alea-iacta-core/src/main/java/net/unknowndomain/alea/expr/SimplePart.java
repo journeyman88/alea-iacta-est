@@ -27,14 +27,18 @@ public class SimplePart extends DicePart
     }
 
     @Override
-    public Integer getResult()
+    public ExpResult getResult()
     {
+        ExpResult res = new ExpResult();
+        res.setExpr(getExpr());
         int sum = 0;
-        for (Integer res : dicePool.getResults())
+        for (Integer rs : dicePool.getResults())
         {
-            sum += res;
+            sum += rs;
+            res.getValidResults().add(rs);
         }
-        return (isPositive() ? 1 : -1) * sum;
+        res.setResult((isPositive() ? 1 : -1) * sum);
+        return res;
     }
     
 }

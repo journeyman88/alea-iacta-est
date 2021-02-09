@@ -31,9 +31,12 @@ public class ModPart extends ExpPart
     }
 
     @Override
-    public Integer getResult()
+    public ExpResult getResult()
     {
-        return modifier;
+        ExpResult res = new ExpResult();
+        res.setExpr(getExpr());
+        res.setResult(modifier);
+        return res;
     }
     
 }

@@ -38,20 +38,32 @@ public class DropPart extends DicePart
     }
 
     @Override
-    public Integer getResult()
+    public ExpResult getResult()
     {
         int sum = 0;
+        ExpResult res = new ExpResult();
+        res.setExpr(getExpr());
         List<Integer> results = dicePool.getResults();
         results.sort((Integer o1, Integer o2) ->
         {
             return o1.compareTo(o2);
         });
         int limit = (maxDice > results.size()) ? results.size() : maxDice;
-        for (int idx = 0; idx < limit; idx++)
+        for (int idx = 0; idx < results.size(); idx++)
         {
-            sum += results.get(idx);
+            int tmp = results.get(idx);
+            if (idx < limit)
+            {
+                sum += tmp;
+                res.getValidResults().add(tmp);
+            }
+            else
+            {
+                res.getDiscardedResults().add(tmp);
+            }
         }
-        return (isPositive() ? 1 : -1) * sum;
+        res.setResult((isPositive() ? 1 : -1) * sum);
+        return res;
     }
     
 }

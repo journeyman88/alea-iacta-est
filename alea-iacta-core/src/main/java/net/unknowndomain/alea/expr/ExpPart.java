@@ -22,17 +22,24 @@ package net.unknowndomain.alea.expr;
 public abstract class ExpPart
 {
     private final boolean positive;
+    private final String part;
     
     protected ExpPart(String exp)
     {
         positive = !exp.startsWith("-");
+        part = exp;
     }
     
-    public abstract Integer getResult();
+    public abstract ExpResult getResult();
 
     public boolean isPositive()
     {
         return positive;
+    }
+
+    public String getExpr()
+    {
+        return part;
     }
     
 }

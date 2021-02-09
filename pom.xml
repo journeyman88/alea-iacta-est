@@ -28,6 +28,11 @@
     </licenses>
     <inceptionYear>2020</inceptionYear>
     
+    <scm>
+        <connection>scm:git:git://github.com/journeyman88/alea-iacta-est</connection>
+        <url>https://github.com/journeyman88/alea-iacta-est</url>
+    </scm>
+    
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -168,7 +173,7 @@
             <dependency>
                 <groupId>org.javacord</groupId>
                 <artifactId>javacord</artifactId>
-                <version>3.1.1</version>
+                <version>3.1.2</version>
                 <type>pom</type>
             </dependency>
             <dependency>

@@ -38,17 +38,25 @@ public class LowerPart extends DicePart
     }
 
     @Override
-    public Integer getResult()
+    public ExpResult getResult()
     {
+        ExpResult res = new ExpResult();
+        res.setExpr(getExpr());
         int sum = 0;
-        for (Integer res : dicePool.getResults())
+        for (Integer rs : dicePool.getResults())
         {
-            if (res <= threshold)
+            if (rs <= threshold)
             {
                 sum ++;
+                res.getValidResults().add(rs);
+            }
+            else
+            {
+                res.getDiscardedResults().add(rs);
             }
         }
-        return (isPositive() ? 1 : -1) * sum;
+        res.setResult((isPositive() ? 1 : -1) * sum);
+        return res;
     }
     
 }

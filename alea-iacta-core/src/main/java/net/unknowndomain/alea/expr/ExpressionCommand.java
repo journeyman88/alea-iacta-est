@@ -15,6 +15,7 @@
  */
 package net.unknowndomain.alea.expr;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import net.unknowndomain.alea.command.Command;
@@ -48,9 +49,30 @@ public class ExpressionCommand extends Command
             }
             else
             {
+                boolean verbose = false;
                 String params = prefixMatcher.group(CMD_PARAMS);
+                if (cmdLine.contains("-v"))
+                {
+                    verbose = true;
+                    params = params.replaceAll("-v", "");
+                }
                 Expression solver = new Expression(params);
-                retVal.append(params).append(" = ").append(solver.getResult().toString(), MsgStyle.BOLD);
+                List<ExpResult> results = solver.getResults();
+                int total = 0;
+                for (ExpResult res : results)
+                {
+                    total += res.getResult();
+                }
+                retVal.append(params).append(" = ").append(total, MsgStyle.BOLD);
+                if (verbose)
+                {
+                    retVal.appendNewLine();
+                    for (ExpResult res : results)
+                    {
+                        res.formatVerbose(retVal);
+                    }
+                    
+                }
             }
         }
         return retVal.build();
