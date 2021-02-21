@@ -46,6 +46,8 @@ For system-specific syntax and usage you can run the `!alea <system> -h` command
 
 ### Next implementations in line:
 
+- All systems: fix the descriptors for the <system> help to fit the system (to kickstart the impl was copied from 7th Sea)
+- Guild Language: add stateful configuration, to allow guilds set the language to use for their messages for commands that support i18n 
 - Blacksad RPG : roll modifiers
 - Knight of the Round Academy : base roll
 
