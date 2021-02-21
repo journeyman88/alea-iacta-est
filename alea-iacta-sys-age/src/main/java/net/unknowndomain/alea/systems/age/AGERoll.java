@@ -31,20 +31,17 @@ import net.unknowndomain.alea.roll.GenericRoll;
 public class AGERoll implements GenericRoll
 {
     
-    public enum Modifiers
-    {
-        VERBOSE
-    }
+    
     
     private final int bonus;
-    private final Set<Modifiers> mods;
+    private final Set<AGEModifiers> mods;
     
-    public AGERoll(Integer bonus, Modifiers ... mod)
+    public AGERoll(Integer bonus, AGEModifiers ... mod)
     {
         this(bonus, Arrays.asList(mod));
     }
     
-    public AGERoll(Integer bonus, Collection<Modifiers> mod)
+    public AGERoll(Integer bonus, Collection<AGEModifiers> mod)
     {
         this.mods = new HashSet<>();
         if (mod != null)
@@ -58,7 +55,7 @@ public class AGERoll implements GenericRoll
     public GenericResult getResult()
     {
         AGEResults results = buildResults(D6.INSTANCE.roll(), D6.INSTANCE.roll(), D6.INSTANCE.roll());
-        results.setVerbose(mods.contains(Modifiers.VERBOSE));
+        results.setVerbose(mods.contains(AGEModifiers.VERBOSE));
         return results;
     }
     

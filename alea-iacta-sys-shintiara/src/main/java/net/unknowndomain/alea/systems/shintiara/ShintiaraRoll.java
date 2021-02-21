@@ -33,21 +33,16 @@ import net.unknowndomain.alea.roll.GenericRoll;
 public class ShintiaraRoll implements GenericRoll
 {
     
-    public enum Modifiers
-    {
-        VERBOSE
-    }
-    
     private final int target;
     private final int netVantage;
-    private final Set<Modifiers> mods;
+    private final Set<ShintiaraModifiers> mods;
     
-    public ShintiaraRoll(Integer target, Integer advantage, Integer disadvantage, Modifiers ... mod)
+    public ShintiaraRoll(Integer target, Integer advantage, Integer disadvantage, ShintiaraModifiers ... mod)
     {
         this(target, advantage, disadvantage, Arrays.asList(mod));
     }
     
-    public ShintiaraRoll(Integer target, Integer advantage, Integer disadvantage, Collection<Modifiers> mod)
+    public ShintiaraRoll(Integer target, Integer advantage, Integer disadvantage, Collection<ShintiaraModifiers> mod)
     {
         this.mods = new HashSet<>();
         if (mod != null)
@@ -79,7 +74,7 @@ public class ShintiaraRoll implements GenericRoll
     {
         ShintiaraResults results = buildResults(D100.INSTANCE.roll(), (D10.INSTANCE.roll() -1));
         results.setShowAsset(netVantage != 0);
-        results.setVerbose(mods.contains(Modifiers.VERBOSE));
+        results.setVerbose(mods.contains(ShintiaraModifiers.VERBOSE));
         return results;
     }
     

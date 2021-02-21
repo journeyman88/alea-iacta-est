@@ -15,20 +15,12 @@
  */
 package net.unknowndomain.alea.systems.shintiara;
 
-import java.util.HashSet;
+import java.util.Locale;
 import java.util.Optional;
-import java.util.Set;
-import net.unknowndomain.alea.command.HelpWrapper;
-import net.unknowndomain.alea.messages.ReturnMsg;
 import net.unknowndomain.alea.systems.RpgSystemCommand;
 import net.unknowndomain.alea.systems.RpgSystemDescriptor;
 import net.unknowndomain.alea.roll.GenericRoll;
-import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.CommandLineParser;
-import org.apache.commons.cli.DefaultParser;
-import org.apache.commons.cli.Option;
-import org.apache.commons.cli.Options;
-import org.apache.commons.cli.ParseException;
+import net.unknowndomain.alea.systems.RpgSystemOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,54 +32,6 @@ public class ShintiaraCommand extends RpgSystemCommand
 {
     private static final Logger LOGGER = LoggerFactory.getLogger(ShintiaraCommand.class);
     private static final RpgSystemDescriptor DESC = new RpgSystemDescriptor("Shintiara RPG", "shn", "shintiara");
-    
-    private static final String TARGET_PARAM = "target";
-    private static final String ADVANTAGE_PARAM = "advantage";
-    private static final String DISADVANTAGE_PARAM = "disadvantage";
-    
-    private static final Options CMD_OPTIONS;
-    
-    static {
-        
-        CMD_OPTIONS = new Options();
-        CMD_OPTIONS.addOption(
-                Option.builder("t")
-                        .longOpt(TARGET_PARAM)
-                        .desc("Target to achieve success")
-                        .hasArg()
-                        .required()
-                        .argName("targetValue")
-                        .build()
-        );
-        CMD_OPTIONS.addOption(
-                Option.builder("a")
-                        .longOpt(ADVANTAGE_PARAM)
-                        .desc("Advantage rank, between 0 and 9")
-                        .hasArg()
-                        .argName("advantageValue")
-                        .build()
-        );
-        CMD_OPTIONS.addOption(
-                Option.builder("d")
-                        .longOpt(DISADVANTAGE_PARAM)
-                        .desc("Disadvantage rank, between 0 and 9")
-                        .hasArg()
-                        .argName("disadvantageValue")
-                        .build()
-        );
-        CMD_OPTIONS.addOption(
-                Option.builder("h")
-                        .longOpt( CMD_HELP )
-                        .desc( "Print help")
-                        .build()
-        );
-        CMD_OPTIONS.addOption(
-                Option.builder("v")
-                        .longOpt(CMD_VERBOSE)
-                        .desc("Enable verbose output")
-                        .build()
-        );
-    }
     
     public ShintiaraCommand()
     {
@@ -105,57 +49,28 @@ public class ShintiaraCommand extends RpgSystemCommand
     {
         return LOGGER;
     }
-    
+
     @Override
-    protected Optional<GenericRoll> safeCommand(String cmdParams)
+    protected Optional<GenericRoll> safeCommand(RpgSystemOptions options, Locale lang)
     {
         Optional<GenericRoll> retVal;
-        try
-        {
-            CommandLineParser parser = new DefaultParser();
-            CommandLine cmd = parser.parse(CMD_OPTIONS, cmdParams.split(" "));
-
-            if (
-                    cmd.hasOption(CMD_HELP)
-                )
-            {
-                return Optional.empty();
-            }
-
-
-            Set<ShintiaraRoll.Modifiers> mods = new HashSet<>();
-
-            int t = 0, a = 0, d = 0;
-            if (cmd.hasOption(CMD_VERBOSE))
-            {
-                mods.add(ShintiaraRoll.Modifiers.VERBOSE);
-            }
-            if (cmd.hasOption(TARGET_PARAM))
-            {
-                t = Integer.parseInt(cmd.getOptionValue(TARGET_PARAM));
-            }
-            if (cmd.hasOption(ADVANTAGE_PARAM))
-            {
-                a = Integer.parseInt(cmd.getOptionValue(ADVANTAGE_PARAM));
-            }
-            if (cmd.hasOption(DISADVANTAGE_PARAM))
-            {
-                d = Integer.parseInt(cmd.getOptionValue(DISADVANTAGE_PARAM));
-            }
-            GenericRoll roll = new ShintiaraRoll(t, a, d, mods);
-            retVal = Optional.of(roll);
-        } 
-        catch (ParseException | NumberFormatException ex)
+        if (options.isHelp() || !(options instanceof ShintiaraOptions) )
         {
             retVal = Optional.empty();
         }
+        else
+        {
+            ShintiaraOptions opt = (ShintiaraOptions) options;
+            ShintiaraRoll roll = new ShintiaraRoll(opt.getTargetValue(), opt.getAdvantageValue(), opt.getDisadvantageValue(), opt.getModifiers());
+            retVal = Optional.of(roll);
+        }
         return retVal;
     }
-    
+
     @Override
-    public ReturnMsg getHelpMessage(String cmdName)
+    public RpgSystemOptions buildOptions()
     {
-        return HelpWrapper.printHelp(cmdName, CMD_OPTIONS, true);
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

@@ -153,14 +153,13 @@
         </plugins>
     </build>
     <modules>
-        <module>alea-iacta-bot</module>
+        <module>alea-iacta-core</module>
         <module>alea-iacta-sys-7thsea2</module>
         <module>alea-iacta-sys-projecthope2</module>
         <module>alea-iacta-sys-shadowrun5</module>
         <module>alea-iacta-sys-vampire5</module>
         <module>alea-iacta-sys-darkeye5</module>
         <module>alea-iacta-sys-brassage</module>
-        <module>alea-iacta-core</module>
         <module>alea-iacta-sys-lexarcana2</module>
         <module>alea-iacta-sys-blacksad</module>
         <module>alea-iacta-sys-shintiara</module>
@@ -168,6 +167,8 @@
         <module>alea-iacta-sys-nottheend</module>
         <module>alea-iacta-sys-klothos</module>
         <module>alea-iacta-sys-walkthrough</module>
+        <module>alea-iacta-parser-picocli</module>
+        <module>alea-iacta-bot</module>
     </modules>
     <dependencyManagement>
         <dependencies>

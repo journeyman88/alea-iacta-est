@@ -15,12 +15,11 @@
  */
 package net.unknowndomain.alea.systems;
 
+import java.util.Locale;
 import java.util.Optional;
 import java.util.ServiceLoader;
 import java.util.concurrent.TimeUnit;
-import java.util.regex.Matcher;
 import net.unknowndomain.alea.command.Command;
-import net.unknowndomain.alea.messages.MsgBuilder;
 import net.unknowndomain.alea.messages.ReturnMsg;
 import net.unknowndomain.alea.roll.GenericResult;
 import net.unknowndomain.alea.roll.GenericRoll;
@@ -69,40 +68,42 @@ public abstract class RpgSystemCommand extends Command
      */
     protected abstract Logger getLogger();
     
+    
     /**
-     * Execute this command and builds the relative roll.
+     * Execute this command and builds the relative roll.This method uses the parameters to build a system-specific roll wrapped in a null-safe Optional.
      * 
-     * This method uses the parameters to build a system-specific roll wrapped
-     * in a null-safe Optional.
      * The command is then invoked as part of the execCommand method.
      * 
-     * @param cmdParams the command parameters in a single string
+     * @param lang the language to use for the translation
+     * @param options the command parameters
      * @return An Optional containing the roll build by this command
      * @see GenericRoll
      * @see Optional
      */
-    protected abstract Optional<GenericRoll> safeCommand(String cmdParams);
+    protected abstract Optional<GenericRoll> safeCommand(RpgSystemOptions options, Locale lang);
     
     
-    @Override
-    public ReturnMsg execCommand(String cmdLine, Optional<Long> callerId)
+    /**
+     * Execute this command and builds the relative roll.This method uses the parameters to build a system-specific roll wrapped in a null-safe Optional.
+     * 
+     * The command is then invoked as part of the execCommand method.
+     * 
+     * @return An Optional containing the roll build by this command
+     * @see RpgSystemOptions
+     */
+    public abstract RpgSystemOptions buildOptions();
+    
+    public Optional<ReturnMsg> execCommand(RpgSystemOptions options, Optional<Long> callerId)
     {
-        MsgBuilder errorBuilder = new MsgBuilder();
-        ReturnMsg retVal = errorBuilder.append("Unexpected Error").build();
-        Matcher prefixMatcher = PREFIX.matcher(cmdLine);
-        if (prefixMatcher.matches())
+        return execCommand(options, Locale.ENGLISH, callerId);
+    }
+    
+    public Optional<ReturnMsg> execCommand(RpgSystemOptions options, Locale lang, Optional<Long> callerId)
+    {
+        Optional<ReturnMsg> retVal = Optional.empty();
+        if (options.isValid())
         {
-            getLogger().debug(cmdLine);
-            String cmdParams = prefixMatcher.group(CMD_PARAMS);
-            Optional<GenericRoll> parsedRoll;
-            if (cmdParams == null || cmdParams.isEmpty())
-            {
-                parsedRoll = Optional.empty();
-            }
-            else
-            {
-                parsedRoll = safeCommand(cmdParams);
-            }
+            Optional<GenericRoll> parsedRoll = safeCommand(options, lang);
             if (parsedRoll.isPresent())
             {
                 GenericRoll roll = parsedRoll.get();
@@ -121,7 +122,7 @@ public abstract class RpgSystemCommand extends Command
                     boolean chkLoad = stateFul.loadState(result);
                     if (!chkLoad)
                     {
-                        return getHelpMessage(prefixMatcher.group(CMD_NAME));
+                        return retVal;
                     }
                 }
                 result = roll.getResult();
@@ -130,23 +131,10 @@ public abstract class RpgSystemCommand extends Command
                     Long id = callerId.get();
                     RESULT_CACHE.put(id, result);
                 }
-                retVal = result.getMessage();
-            }
-            else
-            {
-                retVal = getHelpMessage(prefixMatcher.group(CMD_NAME));
+                retVal = Optional.of(result.getMessage());
             }
         }
         return retVal;
     }
-    
-    /**
-     * This method returns a formatted help for this command.
-     * 
-     * @param cmdName the command-name used to invoke this instance
-     * @return A formatted help message for the specific command.
-     * @see ReturnMsg
-     */
-    public abstract ReturnMsg getHelpMessage(String cmdName);
     
 }

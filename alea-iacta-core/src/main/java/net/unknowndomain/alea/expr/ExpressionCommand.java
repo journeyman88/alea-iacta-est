@@ -18,7 +18,7 @@ package net.unknowndomain.alea.expr;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
-import net.unknowndomain.alea.command.Command;
+import net.unknowndomain.alea.command.BasicCommand;
 import net.unknowndomain.alea.messages.MsgBuilder;
 import net.unknowndomain.alea.messages.MsgStyle;
 import net.unknowndomain.alea.messages.ReturnMsg;
@@ -27,7 +27,7 @@ import net.unknowndomain.alea.messages.ReturnMsg;
  *
  * @author journeyman
  */
-public class ExpressionCommand extends Command
+public class ExpressionCommand extends BasicCommand
 {
 
     @Override

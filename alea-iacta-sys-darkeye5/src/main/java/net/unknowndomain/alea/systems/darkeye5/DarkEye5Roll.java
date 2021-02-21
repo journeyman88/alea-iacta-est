@@ -28,19 +28,14 @@ import net.unknowndomain.alea.roll.GenericRoll;
 public abstract class DarkEye5Roll implements GenericRoll
 {
     
-    public enum Modifiers
-    {
-        VERBOSE
-    }
+    protected final Set<DarkEye5Modifiers> mods;
     
-    protected final Set<Modifiers> mods;
-    
-    public DarkEye5Roll(Modifiers ... mod)
+    public DarkEye5Roll(DarkEye5Modifiers ... mod)
     {
         this(Arrays.asList(mod));
     }
     
-    public DarkEye5Roll(Collection<Modifiers> mod)
+    public DarkEye5Roll(Collection<DarkEye5Modifiers> mod)
     {
         this.mods = new HashSet<>();
         if (mod != null)

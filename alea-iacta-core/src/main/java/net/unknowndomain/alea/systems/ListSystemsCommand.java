@@ -18,7 +18,7 @@ package net.unknowndomain.alea.systems;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import net.unknowndomain.alea.command.Command;
+import net.unknowndomain.alea.command.BasicCommand;
 import net.unknowndomain.alea.messages.MsgBuilder;
 import net.unknowndomain.alea.messages.MsgStyle;
 import net.unknowndomain.alea.messages.ReturnMsg;
@@ -29,7 +29,7 @@ import org.apache.commons.lang3.StringUtils;
  * 
  * @author journeyman
  */
-public class ListSystemsCommand extends Command
+public class ListSystemsCommand extends BasicCommand
 {
     
     @Override

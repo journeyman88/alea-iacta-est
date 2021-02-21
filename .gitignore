@@ -42,3 +42,5 @@ hs_err_pid*
 /alea-iacta-sys-klothos/target/
 /alea-iacta-sys-walkthrough/target/
 /target/
+/test-param-lib/target/
+/alea-iacta-parser-picocli/target/

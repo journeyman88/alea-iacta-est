@@ -15,10 +15,8 @@
  */
 package net.unknowndomain.alea.command;
 
-import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import net.unknowndomain.alea.messages.ReturnMsg;
 
 /**
  * The generic command base-class.
@@ -32,22 +30,22 @@ public abstract class Command
     /**
      * Helper String constant to access the command name.
      */
-    protected static final String CMD_NAME = "command";
+    public static final String CMD_NAME = "command";
     
     /**
      * Helper String constant to access the command parameters.
      */
-    protected static final String CMD_PARAMS = "parameters";
+    public static final String CMD_PARAMS = "parameters";
     
     /**
      * Helper String constant for the common 'help' parameter.
      */
-    protected static final String CMD_HELP = "help";
+    public static final String CMD_HELP = "help";
     
     /**
      * Helper String constant for the common 'verbose' parameter.
      */
-    protected static final String CMD_VERBOSE = "verbose";
+    public static final String CMD_VERBOSE = "verbose";
     
     /**
      * The Pattern used to match the command.
@@ -73,18 +71,5 @@ public abstract class Command
         Matcher matcher = PREFIX.matcher(cmdLine);
         return matcher.matches();
     }
-    /**
-     * Exec this command.
-     * This method execute the command specified in the cmdLine parameter, and 
-     * builds a wrapped message with the results.
-     * Is best to call the checkCommand method beforehand, to see if the commandline
-     * can be interpreted by the implementation.
-     * 
-     * @param cmdLine The commandline which is interpreted by the implementation
-     * @param callerId An Optional that may contain a caller id number, used for rerolls.
-     * @return The return message wrapper which contains the command results.
-     * @see ReturnMsg
-     * @see Optional
-     */
-    public abstract ReturnMsg execCommand(String cmdLine, Optional<Long> callerId);
+    
 }

@@ -15,20 +15,12 @@
  */
 package net.unknowndomain.alea.systems.age;
 
-import java.util.HashSet;
+import java.util.Locale;
 import java.util.Optional;
-import java.util.Set;
-import net.unknowndomain.alea.command.HelpWrapper;
-import net.unknowndomain.alea.messages.ReturnMsg;
 import net.unknowndomain.alea.systems.RpgSystemCommand;
 import net.unknowndomain.alea.systems.RpgSystemDescriptor;
 import net.unknowndomain.alea.roll.GenericRoll;
-import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.CommandLineParser;
-import org.apache.commons.cli.DefaultParser;
-import org.apache.commons.cli.Option;
-import org.apache.commons.cli.Options;
-import org.apache.commons.cli.ParseException;
+import net.unknowndomain.alea.systems.RpgSystemOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,52 +32,6 @@ public class AGECommand extends RpgSystemCommand
 {
     private static final Logger LOGGER = LoggerFactory.getLogger(AGECommand.class);
     private static final RpgSystemDescriptor DESC = new RpgSystemDescriptor("AGE System", "age", "age-system");
-    
-    private static final String ABILITY_PARAM = "ability";
-    private static final String BONUS_PARAM = "bonus";
-    private static final String FOCUS_PARAM = "focus";
-    
-    private static final Options CMD_OPTIONS;
-    
-    static {
-        
-        CMD_OPTIONS = new Options();
-        CMD_OPTIONS.addOption(
-                Option.builder("a")
-                        .longOpt(ABILITY_PARAM)
-                        .desc("Ability value")
-                        .hasArg()
-                        .required()
-                        .argName("abilityValue")
-                        .build()
-        );
-        CMD_OPTIONS.addOption(
-                Option.builder("b")
-                        .longOpt(BONUS_PARAM)
-                        .desc("Misc bonus to apply to the roll")
-                        .hasArg()
-                        .argName("bonusValue")
-                        .build()
-        );
-        CMD_OPTIONS.addOption(
-                Option.builder("f")
-                        .longOpt(FOCUS_PARAM)
-                        .desc("Enable focus bonus")
-                        .build()
-        );
-        CMD_OPTIONS.addOption(
-                Option.builder("h")
-                        .longOpt( CMD_HELP )
-                        .desc( "Print help")
-                        .build()
-        );
-        CMD_OPTIONS.addOption(
-                Option.builder("v")
-                        .longOpt(CMD_VERBOSE)
-                        .desc("Enable verbose output")
-                        .build()
-        );
-    }
     
     public AGECommand()
     {
@@ -105,55 +51,26 @@ public class AGECommand extends RpgSystemCommand
     }
     
     @Override
-    protected Optional<GenericRoll> safeCommand(String cmdParams)
+    protected Optional<GenericRoll> safeCommand(RpgSystemOptions options, Locale lang)
     {
         Optional<GenericRoll> retVal;
-        try
-        {
-            CommandLineParser parser = new DefaultParser();
-            CommandLine cmd = parser.parse(CMD_OPTIONS, cmdParams.split(" "));
-
-            if (
-                    cmd.hasOption(CMD_HELP)
-                )
-            {
-                return Optional.empty();
-            }
-
-
-            Set<AGERoll.Modifiers> mods = new HashSet<>();
-
-            int a = 0, b = 0, f = 0;
-            if (cmd.hasOption(CMD_VERBOSE))
-            {
-                mods.add(AGERoll.Modifiers.VERBOSE);
-            }
-            if (cmd.hasOption(ABILITY_PARAM))
-            {
-                a = Integer.parseInt(cmd.getOptionValue(ABILITY_PARAM));
-            }
-            if (cmd.hasOption(BONUS_PARAM))
-            {
-                b = Integer.parseInt(cmd.getOptionValue(BONUS_PARAM));
-            }
-            if (cmd.hasOption(FOCUS_PARAM))
-            {
-                f = 2;
-            }
-            GenericRoll roll = new AGERoll(a + b + f, mods);
-            retVal = Optional.of(roll);
-        } 
-        catch (ParseException | NumberFormatException ex)
+        if (options.isHelp() || !(options instanceof AGEOptions) )
         {
             retVal = Optional.empty();
         }
+        else
+        {
+            AGEOptions opt = (AGEOptions) options;
+            AGERoll roll = new AGERoll(opt.getTotal(), opt.getModifiers());
+            retVal = Optional.of(roll);
+        }
         return retVal;
     }
-    
+
     @Override
-    public ReturnMsg getHelpMessage(String cmdName)
+    public RpgSystemOptions buildOptions()
     {
-        return HelpWrapper.printHelp(cmdName, CMD_OPTIONS, true);
+        return new AGEOptions();
     }
     
 }

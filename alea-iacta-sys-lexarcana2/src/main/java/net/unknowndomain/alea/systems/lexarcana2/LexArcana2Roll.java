@@ -34,21 +34,16 @@ import net.unknowndomain.alea.roll.GenericRoll;
 public class LexArcana2Roll implements GenericRoll
 {
     
-    public enum Modifiers
-    {
-        VERBOSE
-    }
-    
     private final List<DiceN> diceList;
-    private final Set<Modifiers> mods;
+    private final Set<LexArcana2Modifiers> mods;
     
     
-    public LexArcana2Roll(Integer trait, Integer skill, Integer bonus, Modifiers ... mod)
+    public LexArcana2Roll(Integer first, Integer second, Integer third, LexArcana2Modifiers ... mod)
     {
-        this(trait, skill, bonus, Arrays.asList(mod));
+        this(first, second, third, Arrays.asList(mod));
     }
     
-    public LexArcana2Roll(Integer first, Integer second, Integer third, Collection<Modifiers> mod)
+    public LexArcana2Roll(Integer first, Integer second, Integer third, Collection<LexArcana2Modifiers> mod)
     {
         this.mods = new HashSet<>();
         if (mod != null)
@@ -57,11 +52,11 @@ public class LexArcana2Roll implements GenericRoll
         }
         List<DiceN> tmp = new ArrayList<>();
         tmp.add(DiceBuilder.parseDice(first));
-        if (second > 0)
+        if ((second != null) && (second > 0))
         {
             tmp.add(DiceBuilder.parseDice(second));
         }
-        if (third > 0)
+        if ((third != null) && (third > 0))
         {
             tmp.add(DiceBuilder.parseDice(third));
         }
@@ -72,7 +67,7 @@ public class LexArcana2Roll implements GenericRoll
     public GenericResult getResult()
     {
         LexArcana2Results results = buildResults();
-        results.setVerbose(mods.contains(Modifiers.VERBOSE));
+        results.setVerbose(mods.contains(LexArcana2Modifiers.VERBOSE));
         results.setPoolSize(this.diceList.size());
         return results;
     }
