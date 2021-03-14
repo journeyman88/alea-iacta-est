@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.unknowndomain</groupId>
     <artifactId>alea-iacta-est</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
     
     <name>Alea Iacta Est</name>
@@ -34,9 +34,10 @@
     
     <scm>
         <connection>scm:git:git://github.com/journeyman88/alea-iacta-est</connection>
-        <developerConnection>scm:git:ssh://github.com/journeyman88/alea-iacta-est</developerConnection>
+        <developerConnection>scm:git:ssh://git@github.com/journeyman88/alea-iacta-est</developerConnection>
         <url>https://github.com/journeyman88/alea-iacta-est</url>
-    </scm>
+      <tag>1.0.0</tag>
+  </scm>
     
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
