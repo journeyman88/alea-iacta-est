@@ -113,8 +113,6 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-toolchains-plugin</artifactId>
                     <version>3.0.0</version>
-                    <!-- Disabling due to lack of jitpack support -->
-                    <!--
                     <configuration>
                         <toolchains>
                             <jdk>
@@ -122,7 +120,6 @@
                             </jdk>
                         </toolchains>
                     </configuration>
-                    -->
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -147,6 +144,8 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- Disabling due to lack of jitpack support -->
+            <!--
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-toolchains-plugin</artifactId>
@@ -158,6 +157,7 @@
                     </execution>
                 </executions>
             </plugin>
+            -->
         </plugins>
     </build>
     <modules>
