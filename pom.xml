@@ -8,7 +8,11 @@
     
     <name>Alea Iacta Est</name>
     <description>
-        Alea Iacta Est is a Discord bot designed to help running RPG sessions over the network.
+        Alea Iacta Est is a project that aims to help running RPG sessions over the network.
+        Is composed of a core library and several modules, some to implement functionality 
+        (like "alea-iacta-parser-*" modules) some to implement RPG systems (like "alea-iacta-sys-*"
+        modules) and others that may implement services, like the original module alea-iacta-discord
+        that implements a Discord bot.
     </description>
     <developers>
         <developer>
