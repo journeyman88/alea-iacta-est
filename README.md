@@ -6,7 +6,9 @@ Is composed of a core library and several modules, some to implement functionali
 ## Official modules
 
 https://github.com/journeyman88/alea-iacta-core
+
 https://github.com/journeyman88/alea-iacta-parser-picocli
+
 https://github.com/journeyman88/alea-iacta-discord
 
 ### System modules
