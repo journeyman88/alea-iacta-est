@@ -15,6 +15,7 @@ https://github.com/journeyman88/alea-iacta-discord
 
 | RPG System  | URL  |
 | :------------ | :------------ |
+| 2d20 System  | https://github.com/journeyman88/alea-iacta-sys-2d20  |
 | 7th Sea 2nd Edition  | https://github.com/journeyman88/alea-iacta-sys-7thsea2  |
 | AGE System  | https://github.com/journeyman88/alea-iacta-sys-age  |
 | Blacksad RPG  | https://github.com/journeyman88/alea-iacta-sys-blacksad  |
