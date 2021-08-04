@@ -26,6 +26,7 @@ https://github.com/journeyman88/alea-iacta-discord
 | Project H.O.P.E. 2nd Edition  | https://github.com/journeyman88/alea-iacta-sys-projecthope2  |
 | Shadowrun 5th Edition  | https://github.com/journeyman88/alea-iacta-sys-shadowrun5  |
 | Shintiara RPG (Modern d100)  | https://github.com/journeyman88/alea-iacta-sys-shintiara  |
+| Stigmata: This Signal Kills Fascists  | https://github.com/journeyman88/alea-iacta-sys-stigmata  |
 | The Dark Eye 5th Edition  | https://github.com/journeyman88/alea-iacta-sys-darkeye5  |
 | Vampire the Masquerade 5th Edition  | https://github.com/journeyman88/alea-iacta-sys-vampire5  |
 | Walkthrough RPG  | https://github.com/journeyman88/alea-iacta-sys-walkthrough  |
