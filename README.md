@@ -30,4 +30,5 @@ https://github.com/journeyman88/alea-iacta-discord
 | The Dark Eye 5th Edition  | https://github.com/journeyman88/alea-iacta-sys-darkeye5  |
 | Vampire the Masquerade 5th Edition  | https://github.com/journeyman88/alea-iacta-sys-vampire5  |
 | Walkthrough RPG  | https://github.com/journeyman88/alea-iacta-sys-walkthrough  |
+| Year Zero Engine  | https://github.com/journeyman88/alea-iacta-sys-yearzero  |
 
