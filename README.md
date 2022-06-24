@@ -20,6 +20,9 @@ https://github.com/journeyman88/alea-iacta-discord
 | AGE System  | https://github.com/journeyman88/alea-iacta-sys-age  |
 | Blacksad RPG  | https://github.com/journeyman88/alea-iacta-sys-blacksad  |
 | Brass Age  | https://github.com/journeyman88/alea-iacta-sys-brassage  |
+| Favored by Fortune  | https://github.com/journeyman88/alea-iacta-sys-favoredfortune  |
+| Forged in the Dark  | https://github.com/journeyman88/alea-iacta-sys-fitd  |
+| Genesys System  | https://github.com/journeyman88/alea-iacta-sys-genesys  |
 | Klothos (Thread System)  | https://github.com/journeyman88/alea-iacta-sys-klothos  |
 | Lex Arcana 2nd Edition  | https://github.com/journeyman88/alea-iacta-sys-lexarcana2  |
 | Not The End  | https://github.com/journeyman88/alea-iacta-sys-nottheend  |
