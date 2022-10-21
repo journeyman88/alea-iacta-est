@@ -24,6 +24,7 @@ https://github.com/journeyman88/alea-iacta-discord
 | Forged in the Dark  | https://github.com/journeyman88/alea-iacta-sys-fitd  |
 | Genesys System  | https://github.com/journeyman88/alea-iacta-sys-genesys  |
 | Klothos (Thread System)  | https://github.com/journeyman88/alea-iacta-sys-klothos  |
+| Knights of the Round Academy  | https://github.com/journeyman88/alea-iacta-sys-kotra  |
 | Lex Arcana 2nd Edition  | https://github.com/journeyman88/alea-iacta-sys-lexarcana2  |
 | Not The End  | https://github.com/journeyman88/alea-iacta-sys-nottheend  |
 | Project H.O.P.E. 2nd Edition  | https://github.com/journeyman88/alea-iacta-sys-projecthope2  |
