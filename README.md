@@ -4,11 +4,14 @@ Alea Iacta Est is a project that aims to help running RPG sessions over the netw
 Is composed of a core library and several modules, some to implement functionality (like "alea-iacta-parser-*" modules) some to implement RPG systems (like "alea-iacta-sys-*" modules) and others that may implement services, like the original module alea-iacta-discord that implements a Discord bot.
 
 ## Official modules
+The modules 
 
+### Core Module
+The core module is the central infrastructure and the expression calculator.
 https://github.com/journeyman88/alea-iacta-core
 
-https://github.com/journeyman88/alea-iacta-parser-picocli
-
+### Discord Module
+The discord bot used to serve the commands.
 https://github.com/journeyman88/alea-iacta-discord
 
 ### System modules
